@@ -13,7 +13,10 @@ commands:
         description: Gamemode 1.
         alias: [gmc, gm1]
     nick:
-        description: Nick you or an other player
+        description: Give a nickname
         alias: [lobbynick, lnick, name]
     ban:
         description: Bannt einen Spieler.
+    nickplayer:
+        description: Give a nickname to an other player
+        alias: [lobbynickplayer, lnickplayer, nameother]

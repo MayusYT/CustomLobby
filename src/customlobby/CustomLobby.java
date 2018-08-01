@@ -51,6 +51,7 @@ public class CustomLobby extends JavaPlugin {
 
         //Package: Nick
         getCommand("nick").setExecutor(new Nick());
+        getCommand("nickplayer").setExecutor(new Nick());
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());
