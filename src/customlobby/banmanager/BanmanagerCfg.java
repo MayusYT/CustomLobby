@@ -67,21 +67,25 @@ public class BanmanagerCfg {
     }
 
     public static Boolean onBanlist(Player p) {
-
+        if(ConfigFile.length() != 0) {
         for(String key : Config.getConfigurationSection("bans").getKeys(false)) {
-            if(key.equalsIgnoreCase(p.getName())) {
+            if (key.equalsIgnoreCase(p.getName())) {
                 return true;
 
             }
 
+        }
         } return false;
 
     }
 
     public static Boolean onTempBanList(Player p) {
-        for(String key : Config.getConfigurationSection("tempbans").getKeys(true)) {
-            if(key.equalsIgnoreCase(p.getName())) {
-                return true;
+        if(ConfigFile.length() != 0) {
+            for (String key : Config.getConfigurationSection("tempbans").getKeys(true)) {
+                if (key.equalsIgnoreCase(p.getName())) {
+                    return true;
+
+                }
 
             }
 

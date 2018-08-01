@@ -50,13 +50,18 @@ public class CustomLobby extends JavaPlugin {
 
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
-        getCommand("warn").setExecutor(new WarnHandler());
+        //getCommand("warn").setExecutor(new WarnHandler());
     }
 
 
     @Override
     public void onDisable() {
         System.out.println("[Lobby] Enabled!");
+        try {
+            BanmanagerCfg.save();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static CustomLobby getInstance() {
