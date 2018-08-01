@@ -1,5 +1,6 @@
-package customlobby;
+package customlobby.utils;
 
+import customlobby.CustomLobby;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 import java.util.List;

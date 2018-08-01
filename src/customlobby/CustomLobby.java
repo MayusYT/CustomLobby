@@ -1,5 +1,7 @@
 package customlobby;
 
+import customlobby.essential.LobbyRestrictions;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomLobby extends JavaPlugin {
@@ -14,11 +16,18 @@ public class CustomLobby extends JavaPlugin {
         System.out.println("[Lobby] Enabled!");
         System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ "by Tayus");
         System.out.println("[Lobby] #############");
+
+
+
     }
 
 
     private void init() {
+        //Listener & Events
+        Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
 
+
+        //Commands
     }
 
 
