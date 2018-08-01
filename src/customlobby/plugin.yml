@@ -1,6 +1,7 @@
 name: CustomLobby
 version: 1.0
 author: Mayus, Tallerik
+
 commands:
     warp:
         description: Fuck this shit, i'm out!
@@ -10,3 +11,6 @@ commands:
     c:
         description: Gamemode 1.
         alias: [gmc, gm1]
+    nick:
+        description: Nick you or an other player
+        alias: [lobbynick, lnick, name]

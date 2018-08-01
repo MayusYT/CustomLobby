@@ -1,2 +1,2 @@
 # CustomLobby
-A Berry gud lobby plackinn
+Multifunctinal Lobby Plugin
