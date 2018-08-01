@@ -1,6 +1,7 @@
 name: CustomLobby
 version: 1.0
 author: Mayus, Tallerik
+main: customlobby.CustomLobby
 
 commands:
     warp:
@@ -14,3 +15,5 @@ commands:
     nick:
         description: Nick you or an other player
         alias: [lobbynick, lnick, name]
+    ban:
+        description: Bannt einen Spieler.
