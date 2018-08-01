@@ -1,6 +1,7 @@
 name: CustomLobby
 version: 1.0
 author: Mayus, Tallerik
+main: customlobby.CustomLobby
 commands:
     ban:
-        description: Bannt einen Spieler. Verwendung:
+        description: Bannt einen Spieler.
