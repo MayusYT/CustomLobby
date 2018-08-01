@@ -2,11 +2,5 @@ name: CustomLobby
 version: 1.0
 author: Mayus, Tallerik
 commands:
-    warp:
-        description: Fuck this shit, i'm out!
-    hub:
-        description: Brings you back to the hub!
-        alias: [lobby, spawn]
-    c:
-        description: Gamemode 1.
-        alias: [gmc, gm1]
+    ban:
+        description: Bannt einen Spieler. Verwendung:

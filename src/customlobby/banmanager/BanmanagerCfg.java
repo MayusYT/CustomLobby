@@ -8,9 +8,11 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+
 public class BanmanagerCfg {
 
-    public static File ConfigFile = new File("plugins/Youtube", "bans.yml");
+    public static File ConfigFile = new File("plugins/CustomLobby", "bans.yml");
     public static FileConfiguration Config = YamlConfiguration.loadConfiguration(ConfigFile);
 
 
@@ -32,6 +34,29 @@ public class BanmanagerCfg {
         save();
     }
 
+    public static void addToWarns(Player p) throws IOException {
+        if(Config.getString("warns." + p.getName() + ".warnamount") != null) {
+            Integer warnamount = Integer.parseInt(Config.getString("warns." + p.getName() + ".warnamount"));
+            warnamount = warnamount + 1;
+            Config.set("warns." + p.getName() + ".warnamount", warnamount);
+            save();
+        } else {
+            Config.set("warns." + p.getName() + ".warnamount", 1);
+            save();
+        }
+    }
+
+    public static Integer getWarns(Player p) {
+
+        if(Config.getString("warns." + p.getName() + ".warnamount") != null){
+            Integer warnamount = Integer.parseInt(Config.getString("warns." + p.getName() + ".warnamount"));
+            return warnamount;
+        } else {
+            return 0;
+        }
+
+
+    }
     public static void setOnline(Player p, Boolean online) throws IOException  {
         Config.set(p.getName() + ".Online", online);
         save();
@@ -73,6 +98,8 @@ public class BanmanagerCfg {
         }
 
     }
+
+
 
 
 }

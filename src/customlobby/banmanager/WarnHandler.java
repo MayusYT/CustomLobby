@@ -15,7 +15,17 @@ public class WarnHandler implements CommandExecutor {
         if(p.hasPermission("CustomLobby.warn")) {
             if(args.length == 1) {
                 if(Bukkit.getPlayer(args[0]) != null) {
-
+                    try {
+                        BanmanagerCfg.addToWarns(Bukkit.getPlayer(args[0]));
+                        if(BanmanagerCfg.getWarns(Bukkit.getPlayer(args[0])) == 3) {
+                            BanmanagerCfg.addToBans(Bukkit.getPlayer(args[0]), "Du wurdest nach 3 Warns automatisch für 15 Tage gebannt!", System.currentTimeMillis(), 15);
+                        } else {
+                            Bukkit.getPlayer(args[0]).sendMessage(CustomLobby.prefix + "Du hast einen Warn erhalten. Bei 3 Warns" +
+                                    "wirst du von Netzwerk verbannt! Anzahl Warns: " + BanmanagerCfg.getWarns(Bukkit.getPlayer(args[0])));
+                        }
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     p.sendMessage(CustomLobby.prefix + "§cDieser Spieler existiert nicht!");
                 }
