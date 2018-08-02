@@ -57,6 +57,9 @@ public class BanmanagerCfg {
 
 
     }
+    public static void removeWarns(Player p) {
+
+    }
     public static void setOnline(Player p, Boolean online) throws IOException  {
         Config.set(p.getName() + ".Online", online);
         save();
@@ -68,38 +71,49 @@ public class BanmanagerCfg {
 
     public static Boolean onBanlist(Player p) {
         if(ConfigFile.length() != 0) {
-        for(String key : Config.getConfigurationSection("bans").getKeys(false)) {
-            if (key.equalsIgnoreCase(p.getName())) {
-                return true;
+            if(Config.getConfigurationSection("bans") != null) {
+                for(String key : Config.getConfigurationSection("bans").getKeys(false)) {
+                    if (key.equalsIgnoreCase(p.getName())) {
+                        return true;
 
-            }
+                    }
+
+                }
+            }return false;
 
         }
-        } return false;
+        return false;
 
     }
 
     public static Boolean onTempBanList(Player p) {
         if(ConfigFile.length() != 0) {
-            for (String key : Config.getConfigurationSection("tempbans").getKeys(true)) {
-                if (key.equalsIgnoreCase(p.getName())) {
-                    return true;
+            if(Config.getConfigurationSection("tempbans") != null) {
+                for (String key : Config.getConfigurationSection("tempbans").getKeys(true)) {
+                    if (key.equalsIgnoreCase(p.getName())) {
+                        return true;
+
+                    }
 
                 }
+            } return false;
 
-            }
 
         } return false;
     }
 
     public static Boolean stillBanned(Player p) {
-
-        String untilString = Config.getString(p.getName() + ".banneduntil");
-        if(Float.parseFloat(untilString) >  System.currentTimeMillis()) {
-            return false;
+        if(Config.getString(p.getName() + ".banneduntil")!= null) {
+            String untilString = Config.getString(p.getName() + ".banneduntil");
+            if(Float.parseFloat(untilString) >  System.currentTimeMillis()) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            return true;
+            return false;
         }
+
 
     }
 

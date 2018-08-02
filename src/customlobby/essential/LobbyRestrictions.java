@@ -62,14 +62,9 @@ public class LobbyRestrictions implements Listener {
             e.getPlayer().kickPlayer("Du bist gebannt!");
         }
         //Auf Temp-Ban Liste?
-        if(BanmanagerCfg.onTempBanList(e.getPlayer()) == true) {
+        if(BanmanagerCfg.onTempBanList(e.getPlayer()) == true /* && BanmanagerCfg.stillBanned(e.getPlayer()) == true*/) {
 
-            //Immer noch gebannt?
-            if(BanmanagerCfg.stillBanned(e.getPlayer()) == true) {
-                e.getPlayer().kickPlayer("Du bist noch gebannt!");
-            } else {
-
-            }
+            e.getPlayer().kickPlayer("Du bist gebannt!");
         } else {
             Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen");
         }
