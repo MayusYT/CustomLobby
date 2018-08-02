@@ -1,15 +1,10 @@
 package customlobby.essential;
 
-import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Weather;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -58,11 +53,11 @@ public class LobbyRestrictions implements Listener {
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
-        if (BanmanagerCfg.onBanlist(e.getPlayer()) == true) {
+        if (BanmanagerCfg.onBanlist(e.getPlayer())) {
             e.getPlayer().kickPlayer("Du bist gebannt!");
         }
         //Auf Temp-Ban Liste?
-        if(BanmanagerCfg.onTempBanList(e.getPlayer()) == true  && BanmanagerCfg.stillBanned(e.getPlayer()) == true) {
+        if(BanmanagerCfg.onTempBanList(e.getPlayer()) && BanmanagerCfg.stillBanned(e.getPlayer())) {
 
             e.getPlayer().kickPlayer("Du bist gebannt!");
         } else {

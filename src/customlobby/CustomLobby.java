@@ -7,7 +7,6 @@ import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomLobby extends JavaPlugin {

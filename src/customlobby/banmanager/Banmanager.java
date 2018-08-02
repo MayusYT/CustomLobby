@@ -12,7 +12,7 @@ public class Banmanager implements CommandExecutor {
     //   /ban <Spieler> <Grund> [Dauer]
 
 
-    public void Banmanager() {
+    public Banmanager() {
 
     }
 

@@ -108,11 +108,7 @@ public class BanmanagerCfg {
         System.out.println(Config.getInt(p.getName() + ".oldmillis"));
         if(Config.getInt(p.getName() + ".oldmillis") != 0) {//TODO: Show Here
             String untilString = Config.getString(p.getName() + ".banneduntil");
-            if(Float.parseFloat(untilString) >  System.currentTimeMillis()) {
-                return false;
-            } else {
-                return true;
-            }
+            return !(Float.parseFloat(untilString) > System.currentTimeMillis());
         } else {
             System.out.println(p.getName() + " ist nicht gebannt");
             return false;
