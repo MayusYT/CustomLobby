@@ -26,4 +26,5 @@ public class API {
     public static PluginDescriptionFile getPluginDescriptionObject() {
         return CustomLobby.getInstance().getDescription();
     }
+    public static String getNoPermString() { return CustomLobby.noPermission;}
 }
