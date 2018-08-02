@@ -18,6 +18,14 @@ public class Gamemode implements CommandExecutor {
                 sender.sendMessage(API.getNoPermString());
             }
         }
+        if(cmd.getName().equalsIgnoreCase("s")) {
+            if(sender.hasPermission("CustomLobby.Gamemode.s")) {
+                ((Player)sender).setGameMode(GameMode.SURVIVAL);
+                sender.sendMessage(API.getPrefix() + "§a Du bist nun im §6Überlebensmodus§a!");
+            } else {
+                sender.sendMessage(API.getNoPermString());
+            }
+        }
         return true;
     }
 }
