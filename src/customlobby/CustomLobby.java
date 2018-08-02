@@ -50,7 +50,7 @@ public class CustomLobby extends JavaPlugin {
 
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
-        //getCommand("warn").setExecutor(new WarnHandler());
+        getCommand("warn").setExecutor(new WarnHandler());
     }
 
 

@@ -5,3 +5,5 @@ main: customlobby.CustomLobby
 commands:
     ban:
         description: Bannt einen Spieler.
+    warn:
+        description: Verwarnt einen Spieler.

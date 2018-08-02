@@ -71,7 +71,7 @@ public class LobbyRestrictions implements Listener {
 
             }
         } else {
-            Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen")
+            Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen");
         }
     }
 
