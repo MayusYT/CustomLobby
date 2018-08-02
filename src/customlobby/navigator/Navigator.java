@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Navigator {
 
     public static void createNavigatorGUI(Player p) {
-        Integer i = 0;
+        Integer i = -1;
         Inventory inv = Bukkit.createInventory(null, 36, "§bNavigator");
 
         while(i < 35) {
