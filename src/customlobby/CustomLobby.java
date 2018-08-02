@@ -4,6 +4,7 @@ import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.WarnHandler;
 import customlobby.essential.LobbyRestrictions;
+import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +49,9 @@ public class CustomLobby extends JavaPlugin {
         //Nicht vergessen, die Commands in der plugin.yml einzutragen!
         //############################
 
+        //Package: Nick
+        getCommand("nick").setExecutor(new Nick());
+        getCommand("nickplayer").setExecutor(new Nick());
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());

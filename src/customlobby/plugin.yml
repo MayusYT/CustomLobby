@@ -2,8 +2,23 @@ name: CustomLobby
 version: 1.0
 author: Mayus, Tallerik
 main: customlobby.CustomLobby
+
 commands:
+    warp:
+        description: Fuck this shit, i'm out!
+    hub:
+        description: Brings you back to the hub!
+        alias: [lobby, spawn]
+    c:
+        description: Gamemode 1.
+        alias: [gmc, gm1]
+    nick:
+        description: Give a nickname
+        alias: [lobbynick, lnick, name]
     ban:
         description: Bannt einen Spieler.
+    nickplayer:
+        description: Give a nickname to an other player
+        alias: [lobbynickplayer, lnickplayer, nameother]
     warn:
         description: Verwarnt einen Spieler.
