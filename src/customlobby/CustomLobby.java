@@ -5,6 +5,7 @@ import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.crates.CratesCommand;
+import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
@@ -54,6 +55,7 @@ public class CustomLobby extends JavaPlugin {
         //Listener & Events
         //############################
         Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
+        Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
 
 
 

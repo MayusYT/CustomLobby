@@ -5,12 +5,22 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.List;
+
 public class ItemAPI {
 
     public static ItemStack createItem(Material material, String displayname, byte bite, Integer amount) {
         ItemStack item = new ItemStack(material,  amount, bite);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(displayname);
+        item.setItemMeta(meta);
+        return item;
+    }
+    public static ItemStack createItemWithLore(Material material, String displayname, byte bite, Integer amount, List<String> lore) {
+        ItemStack item = new ItemStack(material,  amount, bite);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(displayname);
+        meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
     }
