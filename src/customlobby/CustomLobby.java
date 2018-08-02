@@ -2,6 +2,7 @@ package customlobby;
 
 import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
+import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
@@ -55,8 +56,10 @@ public class CustomLobby extends JavaPlugin {
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());
+        getCommand("pardon").setExecutor(new PardonHandler());
         //Package: gamemode
         getCommand("c").setExecutor(new Gamemode());
+        getCommand("s").setExecutor(new Gamemode());
     }
 
 

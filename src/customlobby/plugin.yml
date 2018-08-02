@@ -12,6 +12,8 @@ commands:
     c:
         description: Gamemode 1.
         alias: [gmc, gm1]
+    s:
+        description: Gamemode 0.
     nick:
         description: Give a nickname
         alias: [lobbynick, lnick, name]
@@ -22,3 +24,6 @@ commands:
         alias: [lobbynickplayer, lnickplayer, nameother]
     warn:
         description: Verwarnt einen Spieler.
+    pardon:
+        description: Entbannt einen Spieler.
+        alias: unban

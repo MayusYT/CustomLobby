@@ -1,5 +1,6 @@
 package customlobby.banmanager;
 
+import customlobby.utils.API;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -58,11 +59,38 @@ public class BanmanagerCfg {
 
 
     }
-    public static void removeWarns(Player p) {
+    public static void setWarns(Player s, Player p, Integer amount) throws IOException{
+        if(Config.getString("warns." + p.getName() + ".warnamount") != null){
+            if(amount == 0) {
+                Config.getConfigurationSection("warns").set(p.getName(), null);
+            } if(amount > 0) {
+                Config.set("warns." + p.getName() + ".warnamount", amount);
+            } else {
+                s.sendMessage(API.getPrefix() + "§cBitte gib eine gültge Zahl ein.");
+            }
 
+            save();
+        } else {
+            s.sendMessage(API.getPrefix() + "§cDieser Spieler wurde noch nie verwarnt, du kannst also keine bestimmte Anzahl" +
+                    "von Warns für ihn festlegen!");
+        }
     }
     public static void setOnline(Player p, Boolean online) throws IOException  {
         Config.set(p.getName() + ".Online", online);
+        save();
+    }
+
+    public static void pardonPlayer(String p, Player s) throws IOException{
+        if(Config.getString("bans." + p) != null){
+            Config.getConfigurationSection("bans").set(p, null);
+
+        }
+        if(Config.getString("tempbans." + p) != null) {
+            Config.getConfigurationSection("tempbans").set(p, null);
+        }
+        else {
+            s.sendMessage(API.getPrefix() + "§cDieser Spieler ist nicht gebannt!");
+        }
         save();
     }
 
@@ -86,12 +114,28 @@ public class BanmanagerCfg {
         return false;
 
     }
+    public static Boolean onBanlist(String p) {
+        if(ConfigFile.length() != 0) {
+            if(Config.getConfigurationSection("bans") != null) {
+                for(String key : Config.getConfigurationSection("bans").getKeys(false)) {
+                    if (key.equalsIgnoreCase(p)) {
+                        return true;
 
-    public static Boolean onTempBanList(Player p) {
+                    }
+
+                }
+            }return false;
+
+        }
+        return false;
+
+    }
+
+    public static Boolean onTempBanList(String p) {
         if(ConfigFile.length() != 0) {
             if(Config.getConfigurationSection("tempbans") != null) {
                 for (String key : Config.getConfigurationSection("tempbans").getKeys(true)) {
-                    if (key.equalsIgnoreCase(p.getName())) {
+                    if (key.equalsIgnoreCase(p)) {
                         return true;
 
                     }
