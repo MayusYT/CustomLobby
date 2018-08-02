@@ -80,10 +80,10 @@ public class LobbyRestrictions implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         ItemStack item = p.getItemInHand();
-        ItemStack compass = new ItemStack(Material.COMPASS);
+        Material compass = Material.COMPASS;
         if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-                if(item == compass) {
+                if(item.getType() == compass) {
                     e.getPlayer().sendMessage("Trigger:Compass");
                     Navigator.createNavigatorGUI(e.getPlayer());
                 }
