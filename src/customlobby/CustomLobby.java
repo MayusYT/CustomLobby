@@ -4,6 +4,7 @@ import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.WarnHandler;
 import customlobby.essential.LobbyRestrictions;
+import customlobby.gamemode.Gamemode;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,7 +23,7 @@ public class CustomLobby extends JavaPlugin {
 
         System.out.println("[Lobby] #############");
         System.out.println("[Lobby] Enabled!");
-        System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ "by Tayus");
+        System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ " by Tayus");
         System.out.println("[Lobby] #############");
 
 
@@ -55,6 +56,8 @@ public class CustomLobby extends JavaPlugin {
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());
+        //Package: gamemode
+        getCommand("c").setExecutor(new Gamemode());
     }
 
 

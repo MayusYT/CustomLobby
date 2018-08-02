@@ -62,7 +62,7 @@ public class LobbyRestrictions implements Listener {
             e.getPlayer().kickPlayer("Du bist gebannt!");
         }
         //Auf Temp-Ban Liste?
-        if(BanmanagerCfg.onTempBanList(e.getPlayer()) == true /* && BanmanagerCfg.stillBanned(e.getPlayer()) == true*/) {
+        if(BanmanagerCfg.onTempBanList(e.getPlayer()) == true  && BanmanagerCfg.stillBanned(e.getPlayer()) == true) {
 
             e.getPlayer().kickPlayer("Du bist gebannt!");
         } else {

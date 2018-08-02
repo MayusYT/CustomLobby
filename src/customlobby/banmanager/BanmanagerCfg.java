@@ -1,14 +1,11 @@
 package customlobby.banmanager;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
-
-import static java.lang.Integer.parseInt;
 
 public class BanmanagerCfg {
 
@@ -18,6 +15,10 @@ public class BanmanagerCfg {
 
     public static void save() throws IOException {
         Config.save(ConfigFile);
+
+    }
+    public static void reload() {
+        Config = YamlConfiguration.loadConfiguration(ConfigFile);
 
     }
 
@@ -103,7 +104,9 @@ public class BanmanagerCfg {
     }
 
     public static Boolean stillBanned(Player p) {
-        if(Config.getString(p.getName() + ".banneduntil")!= null) {
+        reload();
+        System.out.println(Config.getInt(p.getName() + ".oldmillis"));
+        if(Config.getInt(p.getName() + ".oldmillis") != 0) {//TODO: Show Here
             String untilString = Config.getString(p.getName() + ".banneduntil");
             if(Float.parseFloat(untilString) >  System.currentTimeMillis()) {
                 return false;
@@ -111,6 +114,7 @@ public class BanmanagerCfg {
                 return true;
             }
         } else {
+            System.out.println(p.getName() + " ist nicht gebannt");
             return false;
         }
 
