@@ -4,6 +4,8 @@ import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
+import customlobby.crates.CratesCommand;
+import customlobby.crates.CratesNewCommand;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
@@ -21,7 +23,7 @@ public class CustomLobby extends JavaPlugin {
     public void onEnable() {
         instance = this;
         init();
-
+        initConfig();
         System.out.println("[Lobby] #############");
         System.out.println("[Lobby] Enabled!");
         System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ " by Tayus");
@@ -31,6 +33,15 @@ public class CustomLobby extends JavaPlugin {
 
     }
 
+
+    private void initConfig() {
+        saveConfig();
+        reloadConfig();
+        getConfig().addDefault("player.DEFAULT.exist", false);
+        saveDefaultConfig();
+        saveConfig();
+        reloadConfig();
+    }
 
     private void init() {
         try {
@@ -51,6 +62,9 @@ public class CustomLobby extends JavaPlugin {
         //Nicht vergessen, die Commands in der plugin.yml einzutragen!
         //############################
 
+        //Package crates
+        getCommand("crate").setExecutor(new CratesCommand());
+        getCommand("addcrate").setExecutor(new CratesNewCommand());
         //Package: Nick
         getCommand("nick").setExecutor(new Nick());
         getCommand("nickplayer").setExecutor(new Nick());

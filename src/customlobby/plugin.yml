@@ -29,3 +29,7 @@ commands:
         alias: unban
     gui:
         description: Oeffnet das GUI.
+    crate:
+        description: Open Crate GUI
+    addCrate:
+        description: Add a crate to a player
