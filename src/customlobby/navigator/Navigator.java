@@ -20,14 +20,17 @@ public class Navigator {
         while(i < 35) {
             ++i;
             ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.LIGHT_BLUE.getData());
+            ItemMeta panemeta = pane.getItemMeta();
+            panemeta.setDisplayName("");
+            pane.setItemMeta(panemeta);
             inv.setItem(i, pane);
         }
-        inv.setItem(10, ItemAPI.createItem(Material.GRASS, "SkyBlock", (byte)0, 1));
-        inv.setItem(12, ItemAPI.createItem(Material.BRICK, "CityBuild", (byte) 0, 1));
-        inv.setItem(14, ItemAPI.createItem(Material.CHEST, "SkyWars", (byte) 0, 1));
-        inv.setItem(16, ItemAPI.createItem(Material.IRON_SWORD, "PVP", (byte) 0, 1));
-        inv.setItem(20, ItemAPI.createItem(Material.FIREBALL, "Nuke", (byte) 0, 1));
-        inv.setItem(24, ItemAPI.createSkull("MayusYT", "Lobbyspiele",1));
+        inv.setItem(10, ItemAPI.createItem(Material.GRASS, "§aSky§7Block", (byte)0, 1));
+        inv.setItem(12, ItemAPI.createItem(Material.BRICK, "§4City§bBuild", (byte) 0, 1));
+        inv.setItem(14, ItemAPI.createItem(Material.CHEST, "§3Sky§7Wars", (byte) 0, 1));
+        inv.setItem(16, ItemAPI.createItem(Material.IRON_SWORD, "§cPVP", (byte) 0, 1));
+        inv.setItem(20, ItemAPI.createItem(Material.FIREBALL, "§eNuke", (byte) 0, 1));
+        inv.setItem(24, ItemAPI.createSkull("MayusYT", "§4L§co§6b§eb§2y§as§bp§3i§1e§9l§de",1));
         p.openInventory(inv);
     }
 }

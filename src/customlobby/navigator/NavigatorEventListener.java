@@ -1,4 +1,9 @@
 package customlobby.navigator;
 
-public class NavigatorEventListener {
+
+import org.bukkit.event.Listener;
+
+public class NavigatorEventListener implements Listener {
+
+    
 }

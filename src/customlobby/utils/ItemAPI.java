@@ -20,6 +20,7 @@ public class ItemAPI {
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
         meta.setDisplayName(displayname);
         meta.setOwner(skullOwner);
+        skull.setItemMeta(meta);
         return skull;
     }
 
