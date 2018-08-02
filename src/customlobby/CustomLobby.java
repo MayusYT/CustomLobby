@@ -6,6 +6,7 @@ import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
+import customlobby.navigator.NavigatorCommandListener;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,6 +61,8 @@ public class CustomLobby extends JavaPlugin {
         //Package: gamemode
         getCommand("c").setExecutor(new Gamemode());
         getCommand("s").setExecutor(new Gamemode());
+        //Package: navigator
+        getCommand("gui").setExecutor(new NavigatorCommandListener());
     }
 
 

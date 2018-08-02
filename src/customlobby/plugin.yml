@@ -27,3 +27,5 @@ commands:
     pardon:
         description: Entbannt einen Spieler.
         alias: unban
+    gui:
+        description: Oeffnet das GUI.
