@@ -1,4 +1,4 @@
-name: CustomLobby
+name: BungeeCustomLobby
 version: 1.0
 author: Mayus, Tallerik
-main: customlobby.bungeecord.CustomLobby
+main: customlobby.bungeecord.BungeeCustomLobby
