@@ -33,3 +33,5 @@ commands:
         description: Open Crate GUI
     addCrate:
         description: Add a crate to a player
+    build:
+        description: Enables Build Mode

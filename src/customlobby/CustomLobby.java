@@ -7,6 +7,7 @@ import customlobby.banmanager.WarnHandler;
 import customlobby.crates.CratesCommand;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
+import customlobby.essential.BuildMode;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
@@ -79,6 +80,8 @@ public class CustomLobby extends JavaPlugin {
         getCommand("s").setExecutor(new Gamemode());
         //Package: navigator
         getCommand("gui").setExecutor(new NavigatorCommandListener());
+        //Package: essential
+        getCommand("build").setExecutor(new BuildMode());
     }
 
 
