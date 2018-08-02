@@ -1,16 +1,20 @@
 package customlobby.essential;
 
 import customlobby.banmanager.BanmanagerCfg;
+import customlobby.navigator.Navigator;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class LobbyRestrictions implements Listener {
 
@@ -49,7 +53,7 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-
+        StartItems.setStarterItems(e.getPlayer());
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
@@ -68,6 +72,23 @@ public class LobbyRestrictions implements Listener {
         } else {
             Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen");
         }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e) {
+
+        e.getPlayer().sendMessage("Trigger");
+        String currentItemDisplayName = e.getPlayer().getInventory().getItemInHand().getItemMeta().getDisplayName();
+        if(currentItemDisplayName != null) {
+            if(currentItemDisplayName.equalsIgnoreCase("§bNavigator")) {
+                e.getPlayer().sendMessage("Trigger:Compass");
+                Navigator.createNavigatorGUI(e.getPlayer());
+            }
+
+        } else {
+
+        }
+        e.setCancelled(true);
     }
 
 
