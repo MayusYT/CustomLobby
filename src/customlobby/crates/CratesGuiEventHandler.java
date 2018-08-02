@@ -1,4 +1,6 @@
 package customlobby.crates;
 
-public class CratesGuiEventHandler {
+import org.bukkit.event.Listener;
+
+public class CratesGuiEventHandler implements Listener {
 }
