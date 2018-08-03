@@ -4,6 +4,7 @@ import customlobby.banmanager.BanmanagerCfg;
 import customlobby.navigator.Navigator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -75,9 +77,18 @@ public class LobbyRestrictions implements Listener {
             Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen");
         }
     }
-
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler
+    public void onDrop(PlayerDropItemEvent e) {
+        if(!BuildMode.buildmodeplayers.contains(e.getPlayer().getName())) {
+            e.setCancelled(true);
+        } else {
+            e.setCancelled(false);
+        }
+    }
+    @Deprecated
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
+
         Player p = e.getPlayer();
         ItemStack item = p.getItemInHand();
         Material compass = Material.COMPASS;
@@ -85,15 +96,30 @@ public class LobbyRestrictions implements Listener {
         if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_AIR) {
 
             if (item.getType() == compass) {
-                e.getPlayer().sendMessage("Trigger:Compass");
-                Navigator.createNavigatorGUI(e.getPlayer());
+                Navigator.createNavigatorGUI(p);
             }
             e.setCancelled(true);
         } if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(BuildMode.buildmodeplayers.contains(p.getName())) {
                 e.setCancelled(false);
             } else {
+                if(item.getType() == compass) {
+                    Navigator.createNavigatorGUI(p);
+                }
                 e.setCancelled(true);
+            }
+
+            //If farmland gets destroyed
+        } if(e.getAction() == Action.PHYSICAL) {
+            Block block = e.getClickedBlock();
+            if (block == null) return;
+            // If the block is farmland (soil)
+            if (block.getType() == Material.SOIL){
+                // Deny event and set the block
+                e.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
+                e.setCancelled(true);
+
+                block.setTypeIdAndData(block.getType().getId(), block.getData(), true);
             }
         }
 

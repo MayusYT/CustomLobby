@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Navigator {
-
+    @Deprecated
     public static void createNavigatorGUI(Player p) {
         Integer i = -1;
         Inventory inv = Bukkit.createInventory(null, 36, "§bNavigator");
@@ -19,7 +19,7 @@ public class Navigator {
             ++i;
             ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.LIGHT_BLUE.getData());
             ItemMeta panemeta = pane.getItemMeta();
-            panemeta.setDisplayName("");
+            panemeta.setDisplayName(" ");
             pane.setItemMeta(panemeta);
             inv.setItem(i, pane);
         }
