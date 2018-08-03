@@ -4,6 +4,7 @@ import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
+import customlobby.boots.BootListener;
 import customlobby.crates.CratesCommand;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
@@ -16,8 +17,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomLobby extends JavaPlugin {
-    public static String prefix = "§7[§3Lobby§7]§5 > §r";
-    public static String noPermission = prefix + "§cDu hast nicht die nötige Berechtigung, um diesen Befehl auszuführen";
+    public final static String prefix = "§7[§3Lobby§7]§5 > §r";
+    public final static String noPermission = prefix + "§cDu hast nicht die nötige Berechtigung, um diesen Befehl auszuführen";
     public static CustomLobby instance;
 
 
@@ -57,6 +58,7 @@ public class CustomLobby extends JavaPlugin {
         //############################
         Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
         Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
+        Bukkit.getPluginManager().registerEvents(new BootListener(), this);
 
 
 
