@@ -20,8 +20,6 @@ import customlobby.navigator.NavigatorCommandListener;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import profile.FriendCMD;
-
 public class CustomLobby extends JavaPlugin {
     public final static String prefix = "§7[§3Lobby§7]§5 > §r";
     public final static String noPermission = prefix + "§cDu hast nicht die nötige Berechtigung, um diesen Befehl auszuführen";
@@ -99,7 +97,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("setmoney").setExecutor(new SetMoneyCMD());
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
-        getCommand("friend").setExecutor(new FriendCMD());
+
     }
 
 
