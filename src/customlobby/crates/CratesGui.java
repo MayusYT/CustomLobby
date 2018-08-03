@@ -22,8 +22,8 @@ public class CratesGui {
 
             int count = CustomLobby.getInstance().getConfig().getInt("player." + p.getName() + ".crates");
 
-            lore.add("You have " + count + "lores");
-            inv.setItem(23, ItemAPI.createItemWithLore(Material.CHEST, "§6Crates", (byte) 0, 1, lore));
+            lore.add("You have " + count + " crates");
+            inv.setItem(22, ItemAPI.createItemWithLore(Material.CHEST, "§6Open Crate", (byte) 0, 1, lore));
 
             return inv;
        }
