@@ -1,5 +1,6 @@
 package customlobby.boots;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +19,12 @@ public class BootListener implements Listener {
             if(p.getInventory().getBoots().equals(new ItemStack(Material.DIAMOND_BOOTS))) {
                 p.setAllowFlight(true);
             } else {
-                p.setAllowFlight(false);
+                if(p.getGameMode() == GameMode.CREATIVE) {
+                    p.setAllowFlight(true);
+                } else {
+                    p.setAllowFlight(false);
+                }
+
             }
         } else {
             p.setAllowFlight(false);
