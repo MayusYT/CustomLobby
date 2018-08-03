@@ -35,3 +35,8 @@ commands:
         description: Add a crate to a player
     build:
         description: Enables Build Mode
+    spawn:
+        description: TPs you to the spawn.
+        alias: [hub, lobby]
+    setspawn:
+        description: Sets the spawn to the config.yml

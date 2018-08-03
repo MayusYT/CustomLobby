@@ -8,8 +8,11 @@ import customlobby.boots.BootListener;
 import customlobby.crates.CratesCommand;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
+import customlobby.economy.GetMoneyCMD;
 import customlobby.essential.BuildMode;
 import customlobby.essential.LobbyRestrictions;
+import customlobby.essential.SpawnCMD;
+import customlobby.essential.SpawnCreateCMD;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.nick.Nick;
@@ -41,6 +44,7 @@ public class CustomLobby extends JavaPlugin {
         saveConfig();
         reloadConfig();
         getConfig().addDefault("player.DEFAULT.exist", false);
+        getConfig().addDefault("spawn.DEFAULT.exist", false);
         saveDefaultConfig();
         saveConfig();
         reloadConfig();
@@ -84,6 +88,9 @@ public class CustomLobby extends JavaPlugin {
         getCommand("gui").setExecutor(new NavigatorCommandListener());
         //Package: essential
         getCommand("build").setExecutor(new BuildMode());
+        getCommand("spawn").setExecutor(new SpawnCMD());
+        getCommand("setspawn").setExecutor(new SpawnCreateCMD());
+        //getCommand("money").setExecutor(new GetMoneyCMD());
     }
 
 
