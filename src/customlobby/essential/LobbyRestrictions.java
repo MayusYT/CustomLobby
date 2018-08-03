@@ -111,8 +111,14 @@ public class LobbyRestrictions implements Listener {
             } else {
                 if(item.getType() == compass) {
                     Navigator.createNavigatorGUI(p);
-                }
-                e.setCancelled(true);
+                } if(item.getType() == blazerod) {
+                    if(!Hide.ishidden) {
+                        Hide.hideall(p);
+                    } else {
+                        Hide.showall(p);
+                    }
+
+                    e.setCancelled(true);
             }
 
             //If farmland gets destroyed
