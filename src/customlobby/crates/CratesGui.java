@@ -14,16 +14,19 @@ public class CratesGui {
     public static final int MAIN_GUI = 0;
 
     public static Inventory getInventory(int Gui, Player p) {
-        Inventory inv = Bukkit.createInventory(null, 36, "§bCrates");//23
-        List<String> lore = new ArrayList<String>();
-        CustomLobby.getInstance().saveConfig();
-        CustomLobby.getInstance().reloadConfig();
+        if (Gui == MAIN_GUI) {
+            Inventory inv = Bukkit.createInventory(null, 36, "§bCrates");//23
+            List<String> lore = new ArrayList<String>();
+            CustomLobby.getInstance().saveConfig();
+            CustomLobby.getInstance().reloadConfig();
 
-        int count = CustomLobby.getInstance().getConfig().getInt("player." + p.getName() + ".crates");
+            int count = CustomLobby.getInstance().getConfig().getInt("player." + p.getName() + ".crates");
 
-        lore.add("You have " + count + "lores");
-        inv.setItem(23, ItemAPI.createItemWithLore(Material.CHEST, "§6Crates", (byte)0, 1, lore));
+            lore.add("You have " + count + "lores");
+            inv.setItem(23, ItemAPI.createItemWithLore(Material.CHEST, "§6Crates", (byte) 0, 1, lore));
 
-        return inv;
+            return inv;
+       }
+       return null;
     }
 }

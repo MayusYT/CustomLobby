@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BuildMode implements CommandExecutor {
 
-    public static List<String> buildmodeplayers = new ArrayList<>();
+    public static List<String> buildmodeplayers = new ArrayList<String>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player p = (Player) sender;
