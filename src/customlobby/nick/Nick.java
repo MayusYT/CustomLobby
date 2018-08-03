@@ -72,7 +72,7 @@ public class Nick implements CommandExecutor{
             p.sendMessage(API.getPrefix() + "§6Usage§8: §r /nick §7<§rName/off§7>");
         }
         if(player.equals("other")) {
-            p.sendMessage(API.getPrefix() + "§6Usage§8: §r /nick <§rPlayer§7> §7<§rName/off§7>");
+            p.sendMessage(API.getPrefix() + "§6Usage§8: §r /nickplayer <§rPlayer§7> §7<§rName/off§7>");
         }
 
     }
