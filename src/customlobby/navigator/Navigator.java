@@ -1,11 +1,9 @@
 package customlobby.navigator;
 
 import customlobby.utils.ItemAPI;
-import net.minecraft.server.v1_8_R3.BlockStainedGlassPane;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
