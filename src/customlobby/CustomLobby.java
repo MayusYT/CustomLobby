@@ -9,6 +9,8 @@ import customlobby.crates.CratesCommand;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
 import customlobby.economy.GetMoneyCMD;
+import customlobby.economy.MoneyTransfer;
+import customlobby.economy.SetMoneyCMD;
 import customlobby.essential.BuildMode;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.essential.SpawnCMD;
@@ -90,7 +92,10 @@ public class CustomLobby extends JavaPlugin {
         getCommand("build").setExecutor(new BuildMode());
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
-        //getCommand("money").setExecutor(new GetMoneyCMD());
+        //Package: economy
+        getCommand("money").setExecutor(new GetMoneyCMD());
+        getCommand("setmoney").setExecutor(new SetMoneyCMD());
+        getCommand("transfer").setExecutor(new MoneyTransfer());
     }
 
 
@@ -107,6 +112,7 @@ public class CustomLobby extends JavaPlugin {
     public static CustomLobby getInstance() {
         return instance;
     }
+
 
     public static String getPrefix() {
         return prefix;

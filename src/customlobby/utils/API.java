@@ -26,5 +26,13 @@ public class API {
     public static PluginDescriptionFile getPluginDescriptionObject() {
         return CustomLobby.getInstance().getDescription();
     }
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
     public static String getNoPermString() { return CustomLobby.noPermission;}
 }

@@ -40,3 +40,10 @@ commands:
         alias: [hub, lobby]
     setspawn:
         description: Sets the spawn to the config.yml
+    money:
+        description: Shows your current money.
+        alias: eco
+    transfer:
+        description: Transfers money to your m8tes.
+    setmoney:
+        description: Sets the money of the specified Player.
