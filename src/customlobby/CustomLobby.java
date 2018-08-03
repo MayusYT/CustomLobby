@@ -87,7 +87,7 @@ public class CustomLobby extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("[Lobby] Enabled!");
+        System.out.println("[Lobby] Disabled!");
         try {
             BanmanagerCfg.save();
         } catch(Exception e) {
