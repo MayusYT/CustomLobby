@@ -28,30 +28,31 @@ public class LobbyRestrictions implements Listener {
         e.setCancelled(true);
         e.setFoodLevel(20);
     }
+
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
         e.setCancelled(true);
     }
 
-    @EventHandler(priority=EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onWeatherChange(WeatherChangeEvent event) {
 
         boolean rain = event.toWeatherState();
-        if(rain)
+        if (rain)
             event.setCancelled(true);
     }
 
-    @EventHandler(priority=EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onThunderChange(ThunderChangeEvent event) {
 
         boolean storm = event.toThunderState();
-        if(storm)
+        if (storm)
             event.setCancelled(true);
     }
 
     @EventHandler
     public void onPickup(PlayerPickupItemEvent e) {
-        if(!e.getPlayer().hasPermission("CustomLobby.pickupItems")) {
+        if (!e.getPlayer().hasPermission("CustomLobby.pickupItems")) {
             e.setCancelled(true);
         }
     }
@@ -69,21 +70,23 @@ public class LobbyRestrictions implements Listener {
 
         }
         //Auf Temp-Ban Liste?
-        if(BanmanagerCfg.onTempBanList(e.getPlayer().getName()) && BanmanagerCfg.stillBanned(e.getPlayer())) {
+        if (BanmanagerCfg.onTempBanList(e.getPlayer().getName()) && BanmanagerCfg.stillBanned(e.getPlayer())) {
             if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
                 e.getPlayer().kickPlayer("Du bist gebannt!");
             }
 
         }
     }
+
     @EventHandler
     public void onDrop(PlayerDropItemEvent e) {
-        if(!BuildMode.buildmodeplayers.contains(e.getPlayer().getName())) {
+        if (!BuildMode.buildmodeplayers.contains(e.getPlayer().getName())) {
             e.setCancelled(true);
         } else {
             e.setCancelled(false);
         }
     }
+
     @Deprecated
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
@@ -96,8 +99,9 @@ public class LobbyRestrictions implements Listener {
 
             if (item.getType() == compass) {
                 Navigator.createNavigatorGUI(p);
-            } if(item.getType() == blazerod) {
-                if(!Hide.ishidden) {
+            }
+            if (item.getType() == blazerod) {
+                if (!Hide.ishidden) {
                     Hide.hideall(p);
                 } else {
                     Hide.showall(p);
@@ -105,35 +109,39 @@ public class LobbyRestrictions implements Listener {
 
             }
             e.setCancelled(true);
-        } if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(BuildMode.buildmodeplayers.contains(p.getName())) {
+        }
+        if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (BuildMode.buildmodeplayers.contains(p.getName())) {
                 e.setCancelled(false);
             } else {
-                if(item.getType() == compass) {
+                if (item.getType() == compass) {
                     Navigator.createNavigatorGUI(p);
-                } if(item.getType() == blazerod) {
-                    if(!Hide.ishidden) {
+                }
+                if (item.getType() == blazerod) {
+                    if (!Hide.ishidden) {
                         Hide.hideall(p);
                     } else {
                         Hide.showall(p);
                     }
 
                     e.setCancelled(true);
+                }
+
+                //If farmland gets destroyed
+            }
+            if (e.getAction() == Action.PHYSICAL) {
+                Block block = e.getClickedBlock();
+                if (block == null) return;
+                // If the block is farmland (soil)
+                if (block.getType() == Material.SOIL) {
+                    // Deny event and set the block
+                    e.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
+                    e.setCancelled(true);
+
+                    block.setTypeIdAndData(block.getType().getId(), block.getData(), true);
+                }
             }
 
-            //If farmland gets destroyed
-        } if(e.getAction() == Action.PHYSICAL) {
-            Block block = e.getClickedBlock();
-            if (block == null) return;
-            // If the block is farmland (soil)
-            if (block.getType() == Material.SOIL){
-                // Deny event and set the block
-                e.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
-                e.setCancelled(true);
-
-                block.setTypeIdAndData(block.getType().getId(), block.getData(), true);
-            }
         }
-
     }
 }

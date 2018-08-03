@@ -49,3 +49,5 @@ commands:
         description: Transfers money to your m8tes.
     setmoney:
         description: Sets the money of the specified Player.
+    friend:
+        description: Friend commands. WOWxDleeel
