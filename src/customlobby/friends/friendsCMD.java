@@ -43,6 +43,8 @@ public class friendsCMD implements CommandExecutor{
             }
         }
 
+        if(args[0].equalsIgnoreCase())
+
         return true;
     }
 
