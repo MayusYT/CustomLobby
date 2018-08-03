@@ -1,5 +1,5 @@
 # What is CustomLobby
-[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)  
 CustomLobby is a very powerful all-in-one Spigot/BungeeCord plugin for your server network.
 
 # Features
