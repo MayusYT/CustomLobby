@@ -1,6 +1,7 @@
 package customlobby.essential;
 
 import customlobby.banmanager.BanmanagerCfg;
+import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -68,13 +69,11 @@ public class LobbyRestrictions implements Listener {
 
         }
         //Auf Temp-Ban Liste?
-        if(BanmanagerCfg.onTempBanList(e.getPlayer().getName()) /*&& BanmanagerCfg.stillBanned(e.getPlayer())*/) {
+        if(BanmanagerCfg.onTempBanList(e.getPlayer().getName()) && BanmanagerCfg.stillBanned(e.getPlayer())) {
             if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
                 e.getPlayer().kickPlayer("Du bist gebannt!");
             }
 
-        } else {
-            Bukkit.broadcastMessage("Spieler Tallerik: Keine Vorbestraftungen");
         }
     }
     @EventHandler
@@ -92,11 +91,18 @@ public class LobbyRestrictions implements Listener {
         Player p = e.getPlayer();
         ItemStack item = p.getItemInHand();
         Material compass = Material.COMPASS;
-
+        Material blazerod = Material.BLAZE_ROD;
         if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_AIR) {
 
             if (item.getType() == compass) {
                 Navigator.createNavigatorGUI(p);
+            } if(item.getType() == blazerod) {
+                if(!Hide.ishidden) {
+                    Hide.hideall(p);
+                } else {
+                    Hide.showall(p);
+                }
+
             }
             e.setCancelled(true);
         } if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK) {

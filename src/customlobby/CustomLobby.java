@@ -81,6 +81,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("nickplayer").setExecutor(new Nick());
         //Package: banmanager
         getCommand("ban").setExecutor(new Banmanager());
+        getCommand("tempban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());
         getCommand("pardon").setExecutor(new PardonHandler());
         //Package: gamemode

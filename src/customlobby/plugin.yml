@@ -19,6 +19,8 @@ commands:
         alias: [lobbynick, lnick, name]
     ban:
         description: Bannt einen Spieler.
+    tempban:
+        description: Temp-Bannt einen Spieler.
     nickplayer:
         description: Give a nickname to an other player
         alias: [lobbynickplayer, lnickplayer, nameother]
