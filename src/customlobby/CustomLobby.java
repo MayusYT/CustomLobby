@@ -100,6 +100,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
         getCommand("friend").setExecutor(new friendsCMD());
+
     }
 
 

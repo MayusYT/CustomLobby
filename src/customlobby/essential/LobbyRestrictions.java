@@ -1,6 +1,7 @@
 package customlobby.essential;
 
 import customlobby.banmanager.BanmanagerCfg;
+import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
 import org.bukkit.Bukkit;
@@ -19,6 +20,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class LobbyRestrictions implements Listener {
@@ -76,6 +78,7 @@ public class LobbyRestrictions implements Listener {
             }
 
         }
+
     }
 
     @EventHandler
@@ -95,6 +98,7 @@ public class LobbyRestrictions implements Listener {
         ItemStack item = p.getItemInHand();
         Material compass = Material.COMPASS;
         Material blazerod = Material.BLAZE_ROD;
+        Material chest = Material.CHEST;
         if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_AIR) {
 
             if (item.getType() == compass) {
@@ -107,6 +111,9 @@ public class LobbyRestrictions implements Listener {
                     Hide.showall(p);
                 }
 
+            } if(item.getType() == chest) {
+                Inventory inv = GadgetGUI.createInventory();
+                p.openInventory(inv);
             }
             e.setCancelled(true);
         }
@@ -117,17 +124,19 @@ public class LobbyRestrictions implements Listener {
                 if (item.getType() == compass) {
                     Navigator.createNavigatorGUI(p);
                 }
+                if(item.getType() == chest) {
+                    Inventory inv = GadgetGUI.createInventory();
+                    p.openInventory(inv);
+                }
                 if (item.getType() == blazerod) {
                     if (!Hide.ishidden) {
                         Hide.hideall(p);
                     } else {
                         Hide.showall(p);
                     }
-
-                    e.setCancelled(true);
                 }
+                e.setCancelled(true);
 
-                //If farmland gets destroyed
             }
             if (e.getAction() == Action.PHYSICAL) {
                 Block block = e.getClickedBlock();
