@@ -15,12 +15,12 @@ import customlobby.essential.BuildMode;
 import customlobby.essential.LobbyRestrictions;
 import customlobby.essential.SpawnCMD;
 import customlobby.essential.SpawnCreateCMD;
+import customlobby.friends.friendsCMD;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import profile.FriendCMD;
 
 public class CustomLobby extends JavaPlugin {
     public final static String prefix = "§7[§3Lobby§7]§5 > §r";
@@ -99,7 +99,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("setmoney").setExecutor(new SetMoneyCMD());
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
-        getCommand("friend").setExecutor(new FriendCMD());
+        getCommand("friend").setExecutor(new friendsCMD());
     }
 
 
