@@ -35,4 +35,12 @@ public class API {
         return true;
     }
     public static String getNoPermString() { return CustomLobby.noPermission;}
+
+    public static String toString(boolean b, String trueReturn, String falseReturn) {
+        if(b) {
+            return trueReturn;
+        } else {
+            return falseReturn;
+        }
+    }
 }

@@ -3,6 +3,7 @@ package customlobby.friends;
 import customlobby.CustomLobby;
 import customlobby.utils.API;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,91 +19,131 @@ public class friendsCMD implements CommandExecutor{
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        getInstance().saveConfig();
-        getInstance().reloadConfig();
-        if (args[0].equalsIgnoreCase("add")) {
-            if (args.length == 2) {
-                Player rec = Bukkit.getPlayer(args[1]);
-                if(rec != null) {
+        if(args.length == 2) {
+            getInstance().saveConfig();
+            getInstance().reloadConfig();
+            if (args[0].equalsIgnoreCase("add")) {
+                if (args.length == 2) {
+                    Player rec = Bukkit.getPlayer(args[1]);
+                    if (rec != null) {
 
-                    List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
-                    sender.sendMessage(String.valueOf(requests));
-                    if (requests == null) {
-                        requests = new ArrayList<String>();
-                        requests.add(rec.getName());
-                    } else {
-                        requests.add(rec.getName());
-                    }
-                    CustomLobby.getInstance().getConfig().set("player." + sender.getName() + ".requests" , requests);
-                    getInstance().saveConfig();
-                    getInstance().reloadConfig();
-                    sender.sendMessage(API.getPrefix() + "§aDu hasst eine Freundschaftsanfrage an §6" + rec.getName() + "§a geschickt.");
-                    rec.sendMessage(API.getPrefix() + "§aDu hasst eine Freundschaftsanfrage von §6" + sender.getName() + "§a bekommen!");
-                    rec.sendMessage(API.getPrefix() + "§aNutze §7/§6friend accept " + sender.getName() + " §aum seine anfrage anzunehmen");
-                } else {
-                    sender.sendMessage(API.getPrefix()  + "§cDieser Spieler wurde nicht gefunden!");
-                }
-            } else {
-                printHelp(sender);
-            }
-        }
-
-        if(args[0].equalsIgnoreCase("accept")) {
-            if(args.length == 2) {
-                getInstance().saveConfig();
-                getInstance().reloadConfig();
-                Player p = Bukkit.getPlayer(args[1]);
-                boolean friended = false;
-                List<String> friends = CustomLobby.getInstance().getConfig().getStringList("player." + p.getName() + ".friends");
-                if(friends != null) {
-                    if(friends.contains(p.getName())) {
-                        friended = true;
-                    }
-                }
-                if(!friended) {
-                    getInstance().saveConfig();
-                    getInstance().reloadConfig();
-                    if (p != null) {
-                        boolean gotrequest = false;
                         List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
-                        if (requests != null) {
-
-                            for (int i = 0; i < requests.size(); i++) {
-                                if (requests.get(i).equalsIgnoreCase(p.getName())) {
-                                    p.sendMessage(requests.get(i));
-                                    sender.sendMessage(requests.get(i));
-                                    gotrequest = true;
-                                    break;
-                                }
-                            }
-                            if (gotrequest = true) {
-                                p.sendMessage("MakeFriend");
-                                sender.sendMessage("MakeFriend");
-                                friendsUtil.makeFriend((Player) sender, p);
-                                friendsUtil.makeFriend(p, (Player) sender);
-
-                            } else {
-                                sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
-                            }
+                        sender.sendMessage(String.valueOf(requests));
+                        if (requests == null) {
+                            requests = new ArrayList<String>();
+                            requests.add(rec.getName());
                         } else {
-                            sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
+                            requests.add(rec.getName());
                         }
-
+                        CustomLobby.getInstance().getConfig().set("player." + sender.getName() + ".requests", requests);
+                        getInstance().saveConfig();
+                        getInstance().reloadConfig();
+                        sender.sendMessage(API.getPrefix() + "§aDu hasst eine Freundschaftsanfrage an §6" + rec.getName() + "§a geschickt.");
+                        rec.sendMessage(API.getPrefix() + "§aDu hasst eine Freundschaftsanfrage von §6" + sender.getName() + "§a bekommen!");
+                        rec.sendMessage(API.getPrefix() + "§aNutze §7/§6friend accept " + sender.getName() + " §aum seine anfrage anzunehmen");
                     } else {
                         sender.sendMessage(API.getPrefix() + "§cDieser Spieler wurde nicht gefunden!");
                     }
                 } else {
-                    sender.sendMessage(API.getPrefix() + "§cDu bist bereits mit diesem Spieler befreundet");
+                    printHelp(sender);
                 }
-            } else {
-                printHelp(sender);
+            }
+
+            if (args[0].equalsIgnoreCase("accept")) {
+                if (args.length == 2) {
+                    getInstance().saveConfig();
+                    getInstance().reloadConfig();
+                    Player p = Bukkit.getPlayer(args[1]);
+                    boolean friended = false;
+                    List<String> friends = CustomLobby.getInstance().getConfig().getStringList("player." + p.getName() + ".friends");
+                    if (friends != null) {
+                        if (friends.contains(p.getName())) {
+                            friended = true;
+                        }
+                    }
+                    if (!friended) {
+                        getInstance().saveConfig();
+                        getInstance().reloadConfig();
+                        if (p != null) {
+                            boolean gotrequest = false;
+                            List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
+                            if (requests != null) {
+
+                                for (int i = 0; i < requests.size(); i++) {
+                                    if (requests.get(i).equalsIgnoreCase(p.getName())) {
+                                        p.sendMessage(requests.get(i));
+                                        sender.sendMessage(requests.get(i));
+                                        gotrequest = true;
+                                        break;
+                                    }
+                                }
+                                if (gotrequest = true) {
+                                    p.sendMessage("MakeFriend");
+                                    sender.sendMessage("MakeFriend");
+                                    friendsUtil.makeFriend((Player) sender, p);
+                                    friendsUtil.makeFriend(p, (Player) sender);
+
+                                } else {
+                                    sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
+                                }
+                            } else {
+                                sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
+                            }
+
+                        } else {
+                            sender.sendMessage(API.getPrefix() + "§cDieser Spieler wurde nicht gefunden!");
+                        }
+                    } else {
+                        sender.sendMessage(API.getPrefix() + "§cDu bist bereits mit diesem Spieler befreundet");
+                    }
+                } else {
+                    printHelp(sender);
+                }
             }
         }
-        if(!args[0].equalsIgnoreCase("add") && !args[0].equalsIgnoreCase("accept")) {
-            sender.sendMessage("Wrong");
-            printHelp(sender);
+        if(args.length == 1) {
+            if (args[0].equalsIgnoreCase("list")) {
+                getInstance().saveConfig();
+                getInstance().reloadConfig();
+                List<String> output = new ArrayList<String>();
+                output.add(API.getPrefix() + "§6Deine Freunde:");
+                List<String> friends = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".friends");
+                if(friends.size() == 0) {
+                    output.remove(0);
+                    output.add(API.getPrefix() + "§6Du hast aktuell keine Freunde§7! §6Nutze §7/§2friend add NAME §6 um eine Freundschaftsanfrage zu schicken!");
+                } else {
+                    for (String name : friends) {
+                        Player p = Bukkit.getPlayer(name);
+                        if (p != null) {
+                            output.add(API.getPrefix() + "    §7- §3" + p.getName() + " §7(§aOnline§7)");
+                        } else {
+                            boolean b = false;
+                            for (OfflinePlayer off : Bukkit.getOfflinePlayers()) {
+                                if (off.getName().equalsIgnoreCase(name)) {
+                                    b = true;
+                                    output.add(API.getPrefix() + "    §7- §3" + off.getName() + " §7(§cOffline§7)");
+                                    break;
+                                }
+                            }
+                            if (!b) {
+                                output.add(API.getPrefix() + "    §7- §3Unkown §7(§cDataBaseError§7) §aBitte melde dich bei einem Administrator");
+                            }
+                        }
+                    }
+                }
+                for(String row : output) {
+                    sender.sendMessage(row);
+                }
+            }
         }
 
+        if (args.length >= 1 && args.length <= 2) {
+            if (!args[0].equalsIgnoreCase("add") && !args[0].equalsIgnoreCase("accept") && !args[0].equalsIgnoreCase("list")) {
+                printHelp(sender);
+            }
+        } else {
+            printHelp(sender);
+        }
         return true;
     }
 
