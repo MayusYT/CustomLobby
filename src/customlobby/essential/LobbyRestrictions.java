@@ -123,8 +123,12 @@ public class LobbyRestrictions implements Listener {
         }
 
 
+        if(!BuildMode.buildmodeplayers.contains(p.getName())) {
+            e.setCancelled(true);
+        } else {
+            e.setCancelled(false);
+        }
 
-        e.setCancelled(true);
     }
     @Deprecated
     @EventHandler(priority = EventPriority.HIGHEST)

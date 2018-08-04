@@ -11,10 +11,7 @@ import customlobby.crates.CratesNewCommand;
 import customlobby.economy.GetMoneyCMD;
 import customlobby.economy.MoneyTransfer;
 import customlobby.economy.SetMoneyCMD;
-import customlobby.essential.BuildMode;
-import customlobby.essential.LobbyRestrictions;
-import customlobby.essential.SpawnCMD;
-import customlobby.essential.SpawnCreateCMD;
+import customlobby.essential.*;
 import customlobby.friends.friendsCMD;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
@@ -96,6 +93,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("build").setExecutor(new BuildMode());
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
+        getCommand("tpall").setExecutor(new TpallCMD());
         //Package: economy
         getCommand("money").setExecutor(new GetMoneyCMD());
         getCommand("setmoney").setExecutor(new SetMoneyCMD());

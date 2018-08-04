@@ -53,3 +53,5 @@ commands:
         description: Friend commands. WOWxDleeel
     setwarp:
         description: Sets the navigator's warps.
+    tpall:
+        description: Teleports all players to you.
