@@ -25,7 +25,8 @@ public class friendsCMD implements CommandExecutor{
                 Player rec = Bukkit.getPlayer(args[1]);
                 if(rec != null) {
 
-                    List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".frequests");
+                    List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
+                    sender.sendMessage(String.valueOf(requests));
                     if (requests == null) {
                         requests = new ArrayList<String>();
                         requests.add(rec.getName());
@@ -62,20 +63,23 @@ public class friendsCMD implements CommandExecutor{
                     getInstance().saveConfig();
                     getInstance().reloadConfig();
                     if (p != null) {
-                        boolean e = false;
-                        List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".frequests");
-                        if (requests == null) {
-                            e = true;
-                        } else {
-                            if (!requests.contains(p.getName())) {
-                                e = true;
+                        boolean e = true;
+                        List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
+                        if (requests != null) {
+
+                            for (int i = 0; i < requests.size(); i++) {
+                                if (requests.get(i).equalsIgnoreCase(p.getName())) {
+                                    e = false;
+                                    break;
+                                }
                             }
-                        }
-                        if (!e) {
+                            if (!e) {
+                                friendsUtil.makeFriend((Player) sender, p);
+                                friendsUtil.makeFriend(p, (Player) sender);
 
-                            friendsUtil.makeFriend((Player) sender, p);
-                            friendsUtil.makeFriend(p, (Player) sender);
-
+                            } else {
+                                sender.sendMessage(API.getPrefix() + "§cDu hasst keine Anfrage dieser Person");
+                            }
                         } else {
                             sender.sendMessage(API.getPrefix() + "§cDu hasst keine Anfrage dieser Person");
                         }
@@ -84,13 +88,14 @@ public class friendsCMD implements CommandExecutor{
                         sender.sendMessage(API.getPrefix() + "§cDieser Spieler wurde nicht gefunden!");
                     }
                 } else {
-                    sender.sendMessage(API.getPrefix() + "§cDu bist bereits mit diesem Sopielerbefreundet");
+                    sender.sendMessage(API.getPrefix() + "§cDu bist bereits mit diesem Spieler befreundet");
                 }
             } else {
                 printHelp(sender);
             }
         }
-        if(args[0] != "add" && args[0] != "accept") {
+        if(!args[0].equalsIgnoreCase("add") && !args[0].equalsIgnoreCase("accept")) {
+            sender.sendMessage("Wrong");
             printHelp(sender);
         }
 
