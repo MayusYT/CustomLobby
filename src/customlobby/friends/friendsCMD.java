@@ -63,25 +63,29 @@ public class friendsCMD implements CommandExecutor{
                     getInstance().saveConfig();
                     getInstance().reloadConfig();
                     if (p != null) {
-                        boolean e = true;
+                        boolean gotrequest = false;
                         List<String> requests = CustomLobby.getInstance().getConfig().getStringList("player." + sender.getName() + ".requests");
                         if (requests != null) {
 
                             for (int i = 0; i < requests.size(); i++) {
                                 if (requests.get(i).equalsIgnoreCase(p.getName())) {
-                                    e = false;
+                                    p.sendMessage(requests.get(i));
+                                    sender.sendMessage(requests.get(i));
+                                    gotrequest = true;
                                     break;
                                 }
                             }
-                            if (!e) {
+                            if (gotrequest = true) {
+                                p.sendMessage("MakeFriend");
+                                sender.sendMessage("MakeFriend");
                                 friendsUtil.makeFriend((Player) sender, p);
                                 friendsUtil.makeFriend(p, (Player) sender);
 
                             } else {
-                                sender.sendMessage(API.getPrefix() + "§cDu hasst keine Anfrage dieser Person");
+                                sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
                             }
                         } else {
-                            sender.sendMessage(API.getPrefix() + "§cDu hasst keine Anfrage dieser Person");
+                            sender.sendMessage(API.getPrefix() + "§cDu hast keine Anfrage dieser Person");
                         }
 
                     } else {

@@ -51,3 +51,5 @@ commands:
         description: Sets the money of the specified Player.
     friend:
         description: Friend commands. WOWxDleeel
+    setwarp:
+        description: Sets the navigator's warps.

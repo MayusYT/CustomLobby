@@ -18,6 +18,7 @@ import customlobby.essential.SpawnCreateCMD;
 import customlobby.friends.friendsCMD;
 import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
+import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -90,6 +91,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("s").setExecutor(new Gamemode());
         //Package: navigator
         getCommand("gui").setExecutor(new NavigatorCommandListener());
+        getCommand("setwarp").setExecutor(new SetNavigatorWarpsCMD());
         //Package: essential
         getCommand("build").setExecutor(new BuildMode());
         getCommand("spawn").setExecutor(new SpawnCMD());

@@ -1,11 +1,14 @@
 package customlobby.essential;
 
+import customlobby.CustomLobby;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -61,6 +65,7 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
         //Bann-Abfrage
 
@@ -89,7 +94,38 @@ public class LobbyRestrictions implements Listener {
             e.setCancelled(false);
         }
     }
+    @EventHandler
+    public void onInvClick(InventoryClickEvent e) {
+        CustomLobby.getInstance().reloadConfig();
+        Player p = (Player) e.getWhoClicked();
+        if(e.getInventory().getName().equalsIgnoreCase("§bNavigator")) {
+            if(e.getCurrentItem().getType() == Material.GRASS) {
+                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skyblock.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skyblock.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skyblock.YAW")));
+                p.teleport(loc);
+                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 10, 10);
+            }
+            if(e.getCurrentItem().getType() == Material.CHEST) {
+                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skywars.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.YAW")));
+                p.teleport(loc);
+                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 10, 10);
+            }
+            if(e.getCurrentItem().getType() == Material.IRON_SWORD) {
+                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.pvp.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.YAW")));
+                p.teleport(loc);
+                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 5, 10);
+            }
 
+
+
+
+        } if(e.getInventory().getName().equalsIgnoreCase("§2Gadget§r - §bShop")) {
+
+        }
+
+
+
+        e.setCancelled(true);
+    }
     @Deprecated
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
