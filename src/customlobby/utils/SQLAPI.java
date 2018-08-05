@@ -10,12 +10,22 @@ public interface SQLAPI {
     boolean canConnect();
 
 
-    String getString(String path);
-    List<String> getStringList(String path);
+    void addFriendReq(String name1, String name2);
+    void addFriend(String name1, String name2);
+    List<String> getFriends(String playername);
 
-    int getInt(String path);
 
-    void set(String path, Object object);
+
+    void addWarn(String player);
+    int getWarncount(String player);
+
+    void addTempBan(String player, String reason, int oldmillis, int banneduntil);
+    TempBan getTempBan(String player);
+
+
+    void addBan(String player, String reason);
+    PermBan getBan(String player);
+
 
 
 }

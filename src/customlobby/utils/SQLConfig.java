@@ -16,26 +16,54 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public boolean canConnect() {
-        return MySQLAccess.connectToMysql(host, dbName, user, pw);
+        return false;
     }
 
     @Override
-    public String getString(String path) {
+    public void addFriendReq(String name1, String name2) {
+
+    }
+
+    @Override
+    public void addFriend(String name1, String name2) {
+
+    }
+
+    @Override
+    public List<String> getFriends(String playername) {
         return null;
     }
 
     @Override
-    public List<String> getStringList(String path) {
-        return null;
+    public void addWarn(String player) {
+
     }
 
     @Override
-    public int getInt(String path) {
+    public int getWarncount(String player) {
         return 0;
     }
 
     @Override
-    public void set(String path, Object object) {
+    public void addTempBan(String player, String reason, int oldmillis, int banneduntil) {
 
     }
+
+    @Override
+    public TempBan getTempBan(String player) {
+        return null;
+    }
+
+    @Override
+    public void addBan(String player, String reason) {
+
+    }
+
+    @Override
+    public PermBan getBan(String player) {
+        return null;
+    }
+
+
 }
+
