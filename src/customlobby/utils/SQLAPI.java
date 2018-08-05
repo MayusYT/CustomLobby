@@ -1,5 +1,7 @@
 package customlobby.utils;
 
+import java.util.List;
+
 public interface SQLAPI {
 
 
@@ -7,11 +9,13 @@ public interface SQLAPI {
 
     boolean canConnect();
 
-    void SQLConnect();
 
-    //TODO: Erweitern
+    String getString(String path);
+    List<String> getStringList(String path);
 
+    int getInt(String path);
 
+    void set(String path, Object object);
 
 
 }
