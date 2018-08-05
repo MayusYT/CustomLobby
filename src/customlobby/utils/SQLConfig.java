@@ -25,6 +25,16 @@ public class SQLConfig implements SQLAPI {
     }
 
     @Override
+    public List<String> getFriendReqs(String playername) {
+        return null;
+    }
+
+    @Override
+    public void removeFriendReq(String name1, String name2) {
+
+    }
+
+    @Override
     public void addFriend(String name1, String name2) {
 
     }
@@ -32,6 +42,11 @@ public class SQLConfig implements SQLAPI {
     @Override
     public List<String> getFriends(String playername) {
         return null;
+    }
+
+    @Override
+    public void removeFriend(String name1, String name2) {
+
     }
 
     @Override
@@ -56,6 +71,11 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public void addBan(String player, String reason) {
+
+    }
+
+    @Override
+    public void removeBan(String name) {
 
     }
 
