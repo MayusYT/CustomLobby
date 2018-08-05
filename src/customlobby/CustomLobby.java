@@ -46,7 +46,7 @@ public class CustomLobby extends JavaPlugin {
         reloadConfig();
         getConfig().addDefault("player.DEFAULT.exist", false);
         getConfig().addDefault("spawn.DEFAULT.exist", false);
-        saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
     }

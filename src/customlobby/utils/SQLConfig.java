@@ -16,7 +16,7 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public boolean canConnect() {
-        return false;
+        return MySQLAccess.connectToMysql(host, dbName, user, pw);
     }
 
     @Override

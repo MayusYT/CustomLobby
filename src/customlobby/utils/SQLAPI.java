@@ -11,8 +11,11 @@ public interface SQLAPI {
 
 
     void addFriendReq(String name1, String name2);
+    List<String> getFriendReqs(String playername);
+    void removeFriendReq(String name1, String name2);
     void addFriend(String name1, String name2);
     List<String> getFriends(String playername);
+    void removeFriend(String name1, String name2);
 
 
 
@@ -24,6 +27,7 @@ public interface SQLAPI {
 
 
     void addBan(String player, String reason);
+    void removeBan(String name);
     PermBan getBan(String player);
 
 
