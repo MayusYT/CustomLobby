@@ -1,6 +1,7 @@
 package customlobby.banmanager;
 
 import customlobby.CustomLobby;
+import customlobby.utils.API;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,13 +41,18 @@ public class Banmanager implements CommandExecutor {
             }
             if(args.length == 3) {
                 if(Bukkit.getPlayer(args[0]) != null) {
-                    try {
-                        BanmanagerCfg.addToBans(Bukkit.getPlayer(args[0]), args[1], System.currentTimeMillis(), Integer.parseInt(args[2]));
-                        Bukkit.getPlayer(args[0]).kickPlayer(CustomLobby.prefix + "§cDu wurdest vom Netzwerk für §6" + args[3] + " Tage §cverbannt.");
-                    } catch(Exception e) {
-                        e.printStackTrace();
-                        p.sendMessage(CustomLobby.prefix + "§cEin Fehler ist aufgetreten. Stelle sicher, dass der Grund zusammenhängt und die Dauer eine ganze Zahl ist, siehe Log");
+                    if(!API.isInt(args[2])) {
+                        try {
+                            BanmanagerCfg.addToBans(Bukkit.getPlayer(args[0]), args[1], System.currentTimeMillis(), Integer.parseInt(args[2]));
+                            Bukkit.getPlayer(args[0]).kickPlayer(CustomLobby.prefix + "§cDu wurdest vom Netzwerk für §6" + args[2] + " Tage §cverbannt.");
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                            p.sendMessage(CustomLobby.prefix + "§cEin Fehler ist aufgetreten. Stelle sicher, dass der Grund zusammenhängt und die Dauer eine ganze Zahl ist, siehe Log");
+                        }
+                    } else {
+                        p.sendMessage(CustomLobby.prefix + "§cDu musst eine Zahl als 3. Argument eingeben!");
                     }
+
                 } else {
                     p.sendMessage(CustomLobby.prefix + "§cDieser Spieler existiert nicht!");
                 }

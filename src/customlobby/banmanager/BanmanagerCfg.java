@@ -32,7 +32,7 @@ public class BanmanagerCfg {
     public static void addToBans(Player p, String reason, Long currentmillis, Integer untilbanned) throws IOException{
         Config.set("tempbans." + p.getName() + ".reason", reason);
         Config.set("tempbans." + p.getName() + ".oldmillis", currentmillis);
-        Config.set("tempbans." + p.getName() + ".banneduntil", untilbanned * 86400 * 1000);
+        Config.set("tempbans." + p.getName() + ".banneduntil", untilbanned * 86400000);
         save();
     }
 
