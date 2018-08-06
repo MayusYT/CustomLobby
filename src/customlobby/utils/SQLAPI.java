@@ -21,6 +21,9 @@ public interface SQLAPI {
 
 
     boolean addWarn(String player) throws SQLException;
+
+    boolean removeWarn(String player);
+
     int getWarncount(String player) throws SQLException;
 
     boolean addTempBan(String player, String reason, int oldmillis, int banneduntil);

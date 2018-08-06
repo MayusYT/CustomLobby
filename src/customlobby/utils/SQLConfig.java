@@ -36,12 +36,12 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public List<String> getFriendReqs(String playername) throws SQLException {
-        String sql = "SELECT * FROM `FriendRequest` WHERE `Player1`='" + playername + "'";
-        List<String> list = new ArrayList<>();
+        String sql = "SELECT * FROM `FriendRequest` WHERE `Name1`='" + playername + "'";
+        List<String> list = new ArrayList<String>();
         ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
 
         if(resultSet == null) {
-            return new ArrayList<>();
+            return new ArrayList<String>();
         } else {
             while (resultSet.next()) {
                 list.add(resultSet.getString("Name2"));
@@ -53,7 +53,7 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public boolean removeFriendReq(String name1, String name2) {
-        String sql = "DELETE FROM FriendRequest WHERE `Name1`='" + name1 + "' AND `Name2`='" + name2 + "')";
+        String sql = "DELETE FROM FriendRequest WHERE `Name1`='" + name1 + "' AND `Name2`='" + name2 + "'";
         return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
     }
 
@@ -65,8 +65,8 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public List<String> getFriends(String playername) throws SQLException {
-        String sql = "SELECT * FROM `Friends` WHERE `Player1`='" + playername + "'";
-        List<String> list = new ArrayList<>();
+        String sql = "SELECT * FROM `Friends` WHERE `Name1`='" + playername + "'";
+        List<String> list = new ArrayList<String>();
         ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
         while (resultSet.next()) {
             list.add(resultSet.getString("Name2"));
@@ -76,14 +76,21 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public boolean removeFriend(String name1, String name2) {
-        String sql = "DELETE FROM Friends WHERE `Name1`='" + name1 + "' AND `Name2`='" + name2 + "')";
+        String sql = "DELETE FROM Friends WHERE `Name1`='" + name1 + "' AND `Name2`='" + name2 + "'";
         return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
     }
 
     @Override
     public boolean addWarn(String player) throws SQLException {
         int warncount = getWarncount(player) + 1;
-        String sql = "INSERT INTO Warns (Name, warns) VALUES(" + player + ", " + warncount + ") ON DUPLICATE KEY UPDATE Name=" + player + ", warns=" + warncount;
+        removeWarn(player);
+        String sql = "INSERT INTO Warns (Name, warns) VALUES('" + player + "', " + warncount + ") ON DUPLICATE KEY UPDATE warns=" + warncount;
+        return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
+    }
+
+    @Override
+    public boolean removeWarn(String player) {
+        String sql = "DELETE FROM Warns WHERE `Name`='" + player + "'";
         return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
     }
 
@@ -108,7 +115,7 @@ public class SQLConfig implements SQLAPI {
     public List<TempBan> getTempBan(String player) throws SQLException {
 
         String sql = "SELECT * FROM `TempBan` WHERE `Name`='" + player + "'";
-        List<TempBan> tempBanList = new ArrayList<>();
+        List<TempBan> tempBanList = new ArrayList<TempBan>();
         ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
         boolean used = false;
         while (resultSet.next()) {
@@ -135,7 +142,7 @@ public class SQLConfig implements SQLAPI {
 
     @Override
     public boolean removeBan(String name) {
-        String sql = "DELETE FROM PermBan WHERE `Name`='" + name + "')";
+        String sql = "DELETE FROM PermBan WHERE `Name`='" + name + "'";
         return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
     }
 
@@ -143,7 +150,7 @@ public class SQLConfig implements SQLAPI {
     public List<PermBan> getBan(String player) throws SQLException {
 
         String sql = "SELECT * FROM `PermBan` WHERE `Name`='" + player + "'";
-        List<PermBan> permBanList = new ArrayList<>();
+        List<PermBan> permBanList = new ArrayList<PermBan>();
         ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
         boolean used = false;
         while (resultSet.next()) {
