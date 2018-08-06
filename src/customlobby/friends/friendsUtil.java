@@ -1,22 +1,29 @@
 package customlobby.friends;
 
 import customlobby.CustomLobby;
+import customlobby.SQL.SQLConfig;
 import customlobby.utils.API;
 import org.bukkit.entity.Player;
 
+import java.security.SecureRandom;
+import java.sql.SQLException;
 import java.util.List;
+
+import static customlobby.CustomLobby.getInstance;
 
 public class friendsUtil {
     public static void makeFriend(Player friend1, Player friend2) {
-        CustomLobby.getInstance().saveConfig();
-        CustomLobby.getInstance().reloadConfig();
-        List<String> friends = CustomLobby.getInstance().getConfig().getStringList("player." + friend1.getName() + ".friends");
+        SQLConfig conf = new SQLConfig();
+        conf.initialize(getInstance().getConfig().getString("SQL.host"), getInstance().getConfig().getString("SQL.user"), getInstance().getConfig().getString("SQL.pw"), getInstance().getConfig().getString("SQL.db"));
 
-        friends.add(friend2.getName());
+        if(!conf.canConnect()) {
+            friend1.sendMessage("Fehler!");
+        }
 
-        CustomLobby.getInstance().getConfig().set("player." + friend1.getName() + ".friends", friends);
-        CustomLobby.getInstance().saveConfig();
-        CustomLobby.getInstance().reloadConfig();
+        conf.addFriend(friend1.getName(), friend2.getName());
+        conf.removeFriendReq(friend2.getName(), friend1.getName());
+
+
         friend1.sendMessage(API.getPrefix() + "§aDu bist nun mit §6" + friend2.getName() + " §abefreundet");
 
     }

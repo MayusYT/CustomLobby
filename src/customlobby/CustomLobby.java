@@ -46,9 +46,16 @@ public class CustomLobby extends JavaPlugin {
         reloadConfig();
         getConfig().addDefault("player.DEFAULT.exist", false);
         getConfig().addDefault("spawn.DEFAULT.exist", false);
+
+        getConfig().addDefault("SQL.host", "");
+        getConfig().addDefault("SQL.user", "");
+        getConfig().addDefault("SQL.pw", "");
+        getConfig().addDefault("SQL.db", "");
+
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
+
     }
 
     private void init() {
