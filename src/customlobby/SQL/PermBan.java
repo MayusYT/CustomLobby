@@ -1,4 +1,4 @@
-package customlobby.utils;
+package customlobby.SQL;
 
 public class PermBan {
 

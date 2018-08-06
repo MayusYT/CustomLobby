@@ -1,4 +1,4 @@
-package customlobby.utils;
+package customlobby.SQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
