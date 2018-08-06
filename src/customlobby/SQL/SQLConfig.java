@@ -183,7 +183,7 @@ public class SQLConfig implements SQLAPI {
     public boolean setMoney(String player, int count) {
         String sql = "DELETE FROM Money WHERE `Name`='" + player + "'";
         boolean b1 = MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
-        String sql2 = "INSERT INTO Money (Name, money) VALUES ('" + player + "', " + count;
+        String sql2 = "INSERT INTO Money (Name, money) VALUES ('" + player + "', " + count + ")";
         boolean b2 = MySQLAccess.setSQLContents(host, dbName, user, pw, sql2);
 
         if(!b1 || !b2) {
