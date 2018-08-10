@@ -39,7 +39,12 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        e.setCancelled(true);
+        if(KillECMD.allowKills == false) {
+            e.setCancelled(true);
+        } else {
+            e.setCancelled(false);
+        }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

@@ -101,12 +101,14 @@ public class CustomLobby extends JavaPlugin {
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
         getCommand("tpall").setExecutor(new TpallCMD());
+        getCommand("clearall").setExecutor(new KillECMD());
         //Package: economy
         getCommand("money").setExecutor(new GetMoneyCMD());
         getCommand("setmoney").setExecutor(new SetMoneyCMD());
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
         getCommand("friend").setExecutor(new friendsCMD());
+
 
     }
 
