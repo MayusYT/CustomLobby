@@ -67,8 +67,10 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        e.getPlayer().teleport(SpawnCMD.spawnLoc);
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
+
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
@@ -107,10 +109,6 @@ public class LobbyRestrictions implements Listener {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
                 out.writeUTF("Connect");
                 out.writeUTF("citybuild");
-
-                // If you don't care about the player
-                // Player player = Iterables.getFirst(Bukkit.getOnlinePlayers(), null);
-                // Else, specify them
 
                 p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
             }
