@@ -1,13 +1,8 @@
 package customlobby.friends;
 
-import customlobby.CustomLobby;
 import customlobby.SQL.SQLConfig;
 import customlobby.utils.API;
 import org.bukkit.entity.Player;
-
-import java.security.SecureRandom;
-import java.sql.SQLException;
-import java.util.List;
 
 import static customlobby.CustomLobby.getInstance;
 

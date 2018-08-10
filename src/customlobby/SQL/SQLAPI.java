@@ -34,7 +34,7 @@ public interface SQLAPI {
     boolean removeBan(String name);
     List<PermBan> getBan(String player) throws SQLException;
 
-    int getMoney(String player);
+    int getMoney(String player) throws SQLException;
     boolean setMoney(String player, int count);
 
 }

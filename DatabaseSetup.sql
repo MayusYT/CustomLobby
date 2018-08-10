@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 06. Aug 2018 um 15:52
+-- Erstellungszeit: 07. Aug 2018 um 15:00
 -- Server-Version: 5.7.23-0ubuntu0.16.04.1
 -- PHP-Version: 7.0.30-0ubuntu0.16.04.1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `CustomLobby`
+-- Datenbank: `db112312x2768437`
 --
 
 -- --------------------------------------------------------
@@ -50,6 +50,17 @@ CREATE TABLE `FriendRequest` (
 CREATE TABLE `Friends` (
   `Name1` text NOT NULL,
   `Name2` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `Money`
+--
+
+CREATE TABLE `Money` (
+  `Name` text NOT NULL,
+  `money` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

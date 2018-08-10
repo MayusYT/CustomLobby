@@ -168,6 +168,31 @@ public class SQLConfig implements SQLAPI {
 
     }
 
+    @Override
+    public int getMoney(String player) throws SQLException {
+        String sql = "SELECT * FROM `Money` WHERE `Name`='" + player + "'";
+        ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
+        int i = 0;
+        while (resultSet.next()) {
+            i = resultSet.getInt("money");
+        }
+        return i;
+    }
+
+    @Override
+    public boolean setMoney(String player, int count) {
+        String sql = "DELETE FROM Money WHERE `Name`='" + player + "'";
+        boolean b1 = MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
+        String sql2 = "INSERT INTO Money (Name, money) VALUES ('" + player + "', " + count + ")";
+        boolean b2 = MySQLAccess.setSQLContents(host, dbName, user, pw, sql2);
+
+        if(!b1 || !b2) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
 }
 
