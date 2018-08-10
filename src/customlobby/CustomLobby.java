@@ -17,6 +17,7 @@ import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
+import customlobby.troll.Troll;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -71,7 +72,7 @@ public class CustomLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
         Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
         Bukkit.getPluginManager().registerEvents(new BootListener(), this);
-
+        Bukkit.getPluginManager().registerEvents(new Troll(), this);
 
 
         //############################
