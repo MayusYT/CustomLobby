@@ -15,8 +15,8 @@ public class SpawnCMD implements CommandExecutor {
             Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.X")),
             Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Y")),
             Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Z")),
-            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.PITCH")),
-            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.YAW")));
+            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.YAW")),
+            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.PITCH")));
 
 
     @Override

@@ -18,9 +18,9 @@ public class SpawnCreateCMD implements CommandExecutor {
             CustomLobby.getInstance().reloadConfig();
 
             CustomLobby.getInstance().getConfig().set("spawn.WORLD", currentLoc.getWorld().getName());
-            CustomLobby.getInstance().getConfig().set("spawn.X", currentLoc.getBlockX());
-            CustomLobby.getInstance().getConfig().set("spawn.Y", currentLoc.getBlockY());
-            CustomLobby.getInstance().getConfig().set("spawn.Z", currentLoc.getBlockZ());
+            CustomLobby.getInstance().getConfig().set("spawn.X", currentLoc.getX());
+            CustomLobby.getInstance().getConfig().set("spawn.Y", currentLoc.getY());
+            CustomLobby.getInstance().getConfig().set("spawn.Z", currentLoc.getZ());
             CustomLobby.getInstance().getConfig().set("spawn.PITCH", currentLoc.getPitch());
             CustomLobby.getInstance().getConfig().set("spawn.YAW", currentLoc.getYaw());
             CustomLobby.getInstance().saveConfig();
