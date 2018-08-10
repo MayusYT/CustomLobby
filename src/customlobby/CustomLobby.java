@@ -64,7 +64,7 @@ public class CustomLobby extends JavaPlugin {
         } catch(Exception e) {
             e.printStackTrace();
         }
-
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         //############################
         //Listener & Events
         //############################
