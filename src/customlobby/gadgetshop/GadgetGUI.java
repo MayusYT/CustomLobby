@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class GadgetGUI {
 
 
-    public static Inventory createInventory() {
+    public static Inventory createGadgetInventory() {
         Inventory inv = Bukkit.createInventory(null, 27, "§2Gadget§r - §bShop");
         int i = -1;
         while(i < 26) {

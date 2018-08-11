@@ -11,17 +11,18 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 public class SpawnCMD implements CommandExecutor {
+    public static Location spawnLoc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("spawn.WORLD")),
+            Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.X")),
+            Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Y")),
+            Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Z")),
+            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.YAW")),
+            Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.PITCH")));
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player p = (Player) sender;
         if(CustomLobby.getInstance().getConfig().getString("spawn.X") != null) {
-            Location spawnLoc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("spawn.WORLD")),
-                    Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.X")),
-                    Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Y")),
-                    Double.parseDouble(CustomLobby.getInstance().getConfig().getString("spawn.Z")),
-                    Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.PITCH")),
-                    Float.parseFloat(CustomLobby.getInstance().getConfig().getString("spawn.YAW")));
             p.teleport(spawnLoc);
             p.sendMessage(CustomLobby.prefix + "§bWillkommen am §aSpawn!");
         } else {

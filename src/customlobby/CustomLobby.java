@@ -6,6 +6,7 @@ import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.boots.BootListener;
 import customlobby.crates.CratesCommand;
+import customlobby.crates.CratesEnderchestListener;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
 import customlobby.economy.GetMoneyCMD;
@@ -17,6 +18,7 @@ import customlobby.gamemode.Gamemode;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
+import customlobby.troll.Troll;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -64,14 +66,15 @@ public class CustomLobby extends JavaPlugin {
         } catch(Exception e) {
             e.printStackTrace();
         }
-
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         //############################
         //Listener & Events
         //############################
         Bukkit.getPluginManager().registerEvents(new LobbyRestrictions(), this);
         Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
         Bukkit.getPluginManager().registerEvents(new BootListener(), this);
-
+        Bukkit.getPluginManager().registerEvents(new Troll(), this);
+        Bukkit.getPluginManager().registerEvents(new CratesEnderchestListener(), this);
 
 
         //############################
@@ -101,12 +104,14 @@ public class CustomLobby extends JavaPlugin {
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
         getCommand("tpall").setExecutor(new TpallCMD());
+        getCommand("clearall").setExecutor(new KillECMD());
         //Package: economy
         getCommand("money").setExecutor(new GetMoneyCMD());
         getCommand("setmoney").setExecutor(new SetMoneyCMD());
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
         getCommand("friend").setExecutor(new friendsCMD());
+
 
     }
 

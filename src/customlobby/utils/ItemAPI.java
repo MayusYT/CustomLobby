@@ -33,5 +33,14 @@ public class ItemAPI {
         skull.setItemMeta(meta);
         return skull;
     }
+    public static ItemStack createSkullWithLore(String skullOwner, String displayname, Integer amount, List<String>  lore) {
+        ItemStack skull = new ItemStack(Material.SKULL_ITEM, amount, (byte) 3);
+        SkullMeta meta = (SkullMeta) skull.getItemMeta();
+        meta.setDisplayName(displayname);
+        meta.setOwner(skullOwner);
+        meta.setLore(lore);
+        skull.setItemMeta(meta);
+        return skull;
+    }
 
 }

@@ -55,3 +55,5 @@ commands:
         description: Sets the navigator's warps.
     tpall:
         description: Teleports all players to you.
+    clearall:
+        description: Kills all entitys in the world

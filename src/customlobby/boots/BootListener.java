@@ -42,10 +42,12 @@ public class BootListener implements Listener {
             }
 
 
+
+        } else {
             if (p.getLocation().getBlock().getType() == Material.STONE_PLATE) {
                 if (p.getLocation().subtract(0D, 1D, 0D).getBlock().getType() == Material.REDSTONE_BLOCK) {
 
-                    Vector v = p.getLocation().getDirection().multiply(1.5D).setY(1D);
+                    Vector v = p.getLocation().getDirection().multiply(3D).setY(1D);
                     p.setVelocity(v);
 
                     p.playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 5);
@@ -54,8 +56,11 @@ public class BootListener implements Listener {
                     p.setFallDistance(-999F);
                 }
             }
-        } else {
-            p.setAllowFlight(false);
+            if(p.getGameMode() == GameMode.CREATIVE) {
+                p.setAllowFlight(true);
+            } else {
+                p.setAllowFlight(false);
+            }
             p.setWalkSpeed(0.2f);
             p.setPlayerListName(p.getName());
         }

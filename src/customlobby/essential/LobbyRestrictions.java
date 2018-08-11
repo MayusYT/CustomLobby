@@ -1,5 +1,7 @@
 package customlobby.essential;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import customlobby.CustomLobby;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.gadgetshop.GadgetGUI;
@@ -37,7 +39,12 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        e.setCancelled(true);
+        if(KillECMD.allowKills == false) {
+            e.setCancelled(true);
+        } else {
+            e.setCancelled(false);
+        }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -65,8 +72,10 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        e.getPlayer().teleport(SpawnCMD.spawnLoc);
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
+
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
@@ -83,6 +92,8 @@ public class LobbyRestrictions implements Listener {
             }
 
         }
+        //To-Do: Bossbar
+        //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
 
     }
 
@@ -99,10 +110,12 @@ public class LobbyRestrictions implements Listener {
         CustomLobby.getInstance().reloadConfig();
         Player p = (Player) e.getWhoClicked();
         if(e.getInventory().getName().equalsIgnoreCase("§bNavigator")) {
-            if(e.getCurrentItem().getType() == Material.GRASS) {
-                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skyblock.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skyblock.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skyblock.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skyblock.YAW")));
-                p.teleport(loc);
-                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 10, 10);
+            if(e.getCurrentItem().getType() == Material.BRICK) {
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("Connect");
+                out.writeUTF("citybuild");
+
+                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
             }
             if(e.getCurrentItem().getType() == Material.CHEST) {
                 Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skywars.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.YAW")));
@@ -152,7 +165,7 @@ public class LobbyRestrictions implements Listener {
                 }
 
             } if(item.getType() == chest) {
-                Inventory inv = GadgetGUI.createInventory();
+                Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
             }
             e.setCancelled(true);
@@ -165,7 +178,7 @@ public class LobbyRestrictions implements Listener {
                     Navigator.createNavigatorGUI(p);
                 }
                 if(item.getType() == chest) {
-                    Inventory inv = GadgetGUI.createInventory();
+                    Inventory inv = GadgetGUI.createGadgetInventory();
                     p.openInventory(inv);
                 }
                 if (item.getType() == blazerod) {
@@ -175,6 +188,7 @@ public class LobbyRestrictions implements Listener {
                         Hide.showall(p);
                     }
                 }
+
                 e.setCancelled(true);
 
             }
