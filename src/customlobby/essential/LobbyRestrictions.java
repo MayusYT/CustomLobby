@@ -188,6 +188,7 @@ public class LobbyRestrictions implements Listener {
                         Hide.showall(p);
                     }
                 }
+
                 e.setCancelled(true);
 
             }

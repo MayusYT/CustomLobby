@@ -6,6 +6,7 @@ import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.boots.BootListener;
 import customlobby.crates.CratesCommand;
+import customlobby.crates.CratesEnderchestListener;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
 import customlobby.economy.GetMoneyCMD;
@@ -73,6 +74,7 @@ public class CustomLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
         Bukkit.getPluginManager().registerEvents(new BootListener(), this);
         Bukkit.getPluginManager().registerEvents(new Troll(), this);
+        Bukkit.getPluginManager().registerEvents(new CratesEnderchestListener(), this);
 
 
         //############################

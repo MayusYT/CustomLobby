@@ -13,6 +13,8 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class Troll implements Listener {
+
+    /**
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
@@ -25,9 +27,11 @@ public class Troll implements Listener {
                 fireball.setIsIncendiary(false);
                 fireball.setYield(4F);
                 fireball.setShooter(player);
+            }  else {
+                return;
             }
         }
 
-
-    }
+**/
+  //  }
 }
