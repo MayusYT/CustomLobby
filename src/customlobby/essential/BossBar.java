@@ -1,13 +1,13 @@
 package customlobby.essential;
 
 
-import net.minecraft.server.v1_8_R3.EntityEnderDragon;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityLiving;
-import net.minecraft.server.v1_8_R3.WorldServer;
+import net.minecraft.server.v1_8_R1.EntityEnderDragon;
+import net.minecraft.server.v1_8_R1.Packet;
+import net.minecraft.server.v1_8_R1.PacketPlayOutSpawnEntityLiving;
+import net.minecraft.server.v1_8_R1.WorldServer;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class BossBar {
@@ -21,7 +21,7 @@ public class BossBar {
         dragon.setCustomName(name);
         dragon.setInvisible(true);
 
-        Packet<?> packet = new PacketPlayOutSpawnEntityLiving(dragon);
+        Packet packet = new PacketPlayOutSpawnEntityLiving(dragon);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
     }
 
