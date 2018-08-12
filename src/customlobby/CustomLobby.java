@@ -61,11 +61,14 @@ public class CustomLobby extends JavaPlugin {
     }
 
     private void init() {
+
+        /*
         try {
+            BanmanagerCfg.ConfigFile.delete();
             BanmanagerCfg.save();
         } catch(Exception e) {
             e.printStackTrace();
-        }
+        }*/
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         //############################
         //Listener & Events

@@ -26,7 +26,7 @@ public class Banmanager implements CommandExecutor {
                 if(Bukkit.getPlayer(args[0]) != null) {
                     try {
                         BanmanagerCfg.addToBans(Bukkit.getPlayer(args[0]), args[1]);
-                        if(BanmanagerCfg.getOnline(Bukkit.getPlayer(args[0]))) {
+                        if(Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(args[0]))) {
                             Bukkit.getPlayer(args[0]).kickPlayer(CustomLobby.prefix + "§cDu wurdest vom Netzwerk §6PERMANENT §cverbannt.");
                         }
 
