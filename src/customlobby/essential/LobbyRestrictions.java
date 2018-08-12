@@ -79,7 +79,7 @@ public class LobbyRestrictions implements Listener {
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
-        if (BanmanagerCfg.onBanlist(e.getPlayer())) {
+        if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
             if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
                 e.getPlayer().kickPlayer("Du bist gebannt!");
             }
@@ -113,7 +113,7 @@ public class LobbyRestrictions implements Listener {
             if(e.getCurrentItem().getType() == Material.BRICK) {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
                 out.writeUTF("Connect");
-                out.writeUTF("citybuild");
+                out.writeUTF("CB1");
 
                 p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
             }
