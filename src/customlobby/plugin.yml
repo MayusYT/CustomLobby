@@ -57,3 +57,7 @@ commands:
         description: Teleports all players to you.
     clearall:
         description: Kills all entitys in the world
+    mail:
+        description: Do you get Mails? Read them here
+    sendmail:
+        description: Send a Player a mail

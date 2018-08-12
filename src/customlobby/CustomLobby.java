@@ -15,6 +15,9 @@ import customlobby.economy.SetMoneyCMD;
 import customlobby.essential.*;
 import customlobby.friends.friendsCMD;
 import customlobby.gamemode.Gamemode;
+import customlobby.mail.MailCMD;
+import customlobby.mail.MailListener;
+import customlobby.mail.SendMailCMD;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
@@ -78,6 +81,7 @@ public class CustomLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BootListener(), this);
         Bukkit.getPluginManager().registerEvents(new Troll(), this);
         Bukkit.getPluginManager().registerEvents(new CratesEnderchestListener(), this);
+        Bukkit.getPluginManager().registerEvents(new MailListener(), this);
 
 
         //############################
@@ -114,8 +118,9 @@ public class CustomLobby extends JavaPlugin {
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
         getCommand("friend").setExecutor(new friendsCMD());
-
-
+        //Package: mail
+        getCommand("sendmail").setExecutor(new SendMailCMD());
+        getCommand("mail").setExecutor(new MailCMD());
     }
 
 

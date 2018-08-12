@@ -194,5 +194,26 @@ public class SQLConfig implements SQLAPI {
     }
 
 
+    public boolean addMail(String from, String to, String msg) {
+        String sql2 = "INSERT INTO Mails (fromPlayer, toPlayer, msg) VALUES ('" + from + "', '" + to + "', '" + msg + "')";
+        return MySQLAccess.setSQLContents(host, dbName, user, pw, sql2);
+    }
+
+    public List<Mail> getMails(String name) throws SQLException {
+        String sql = "SELECT * FROM Mails WHERE `toPlayer`='" + name + "'";
+        ResultSet resultSet = MySQLAccess.getSQLContents(host, dbName, user, pw, sql);
+        int i = 0;
+        List<Mail> list = new ArrayList<Mail>();
+        while (resultSet.next()) {
+            list.add(new Mail(resultSet.getString("fromPlayer"), resultSet.getString("toPlayer"), resultSet.getString("msg")));
+        }
+        return list;
+    }
+
+    public boolean delMail(String to, String msg) {
+        String sql = "DELETE FROM Mails WHERE `toPlayer`='" + to + "' AND `msg`='" + msg + "'";
+        return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
+    }
+
 }
 
