@@ -37,4 +37,9 @@ public interface SQLAPI {
     int getMoney(String player) throws SQLException;
     boolean setMoney(String player, int count);
 
+    boolean addMail(String from, String to, String msg);
+
+    List<Mail> getMails(String name) throws SQLException;
+
+    boolean delMail(String to, String msg);
 }
