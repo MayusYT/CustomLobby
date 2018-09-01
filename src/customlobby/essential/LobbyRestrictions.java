@@ -116,17 +116,26 @@ public class LobbyRestrictions implements Listener {
                 out.writeUTF("CB1");
 
                 p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
+            } else if(e.getCurrentItem().getType() == Material.GRASS) {
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("Connect");
+                out.writeUTF("skyblock");
+
+                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
+            } else if(e.getCurrentItem().getType() == Material.IRON_SWORD) {
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("Connect");
+                out.writeUTF("1vs1");
+
+                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
+            } else if(e.getCurrentItem().getType() == Material.IRON_BLOCK) {
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("Connect");
+                out.writeUTF("Builder");
+
+                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
             }
-            if(e.getCurrentItem().getType() == Material.CHEST) {
-                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skywars.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.YAW")));
-                p.teleport(loc);
-                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 10, 10);
-            }
-            if(e.getCurrentItem().getType() == Material.IRON_SWORD) {
-                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.pvp.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.YAW")));
-                p.teleport(loc);
-                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 5, 10);
-            }
+
 
 
 

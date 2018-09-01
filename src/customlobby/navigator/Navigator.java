@@ -28,7 +28,8 @@ public class Navigator {
         inv.setItem(14, ItemAPI.createItem(Material.CHEST, "§3Sky§7Wars", (byte) 0, 1));
         inv.setItem(16, ItemAPI.createItem(Material.IRON_SWORD, "§cPVP", (byte) 0, 1));
         inv.setItem(20, ItemAPI.createItem(Material.FIREBALL, "§eNuke", (byte) 0, 1));
-        inv.setItem(24, ItemAPI.createSkull("MayusYT", "§4L§co§6b§eb§2y§as§bp§3i§1e§9l§de",1));
+       // inv.setItem(24, ItemAPI.createSkull("MayusYT", "§4L§co§6b§eb§2y§as§bp§3i§1e§9l§de",1));
+        inv.setItem(24, ItemAPI.createItem(Material.IRON_BLOCK, "§c§lBAUSERVER",(byte) 0, 1));
         p.openInventory(inv);
     }
 }
