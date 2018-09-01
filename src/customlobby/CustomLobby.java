@@ -5,6 +5,7 @@ import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 import customlobby.boots.BootListener;
+import customlobby.chat.ChatListener;
 import customlobby.crates.CratesCommand;
 import customlobby.crates.CratesEnderchestListener;
 import customlobby.crates.CratesGuiEventHandler;
@@ -21,6 +22,8 @@ import customlobby.mail.SendMailCMD;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
+import customlobby.scoreboard.ScoreboardListener;
+import customlobby.tablist.Tablist;
 import customlobby.troll.Troll;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -82,7 +85,8 @@ public class CustomLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Troll(), this);
         Bukkit.getPluginManager().registerEvents(new CratesEnderchestListener(), this);
         Bukkit.getPluginManager().registerEvents(new MailListener(), this);
-
+        Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
 
         //############################
         //Commands
@@ -121,6 +125,11 @@ public class CustomLobby extends JavaPlugin {
         //Package: mail
         getCommand("sendmail").setExecutor(new SendMailCMD());
         getCommand("mail").setExecutor(new MailCMD());
+
+
+        getCommand("connServer").setExecutor(new connServerCMD());
+
+        Tablist.repeatingTab();
     }
 
 

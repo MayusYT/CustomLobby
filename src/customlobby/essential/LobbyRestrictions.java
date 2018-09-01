@@ -4,9 +4,11 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import customlobby.CustomLobby;
 import customlobby.banmanager.BanmanagerCfg;
+import customlobby.friends.friendsGui.FriendGUI;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
+import customlobby.utils.ItemAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -109,6 +111,7 @@ public class LobbyRestrictions implements Listener {
     public void onInvClick(InventoryClickEvent e) {
         CustomLobby.getInstance().reloadConfig();
         Player p = (Player) e.getWhoClicked();
+        //Navigator
         if(e.getInventory().getName().equalsIgnoreCase("§bNavigator")) {
             if(e.getCurrentItem().getType() == Material.BRICK) {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -140,7 +143,22 @@ public class LobbyRestrictions implements Listener {
 
 
 
-        } if(e.getInventory().getName().equalsIgnoreCase("§2Gadget§r - §bShop")) {
+        }
+
+
+        //Gatgets
+        if(e.getInventory().getName().equalsIgnoreCase("§2Gadget§r - §bShop")) {
+
+        }
+
+
+
+
+        //TODO: Implement
+        //Friend
+        if(e.getInventory().getName().equalsIgnoreCase("§9Profil, Freunde und Parties")) {
+
+
 
         }
 
@@ -161,6 +179,7 @@ public class LobbyRestrictions implements Listener {
         Material compass = Material.COMPASS;
         Material blazerod = Material.BLAZE_ROD;
         Material chest = Material.CHEST;
+        Material skull = Material.SKULL;
         if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_AIR) {
 
             if (item.getType() == compass) {
@@ -173,9 +192,13 @@ public class LobbyRestrictions implements Listener {
                     Hide.showall(p);
                 }
 
+
             } if(item.getType() == chest) {
                 Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
+            }
+            if (item.hasItemMeta()) {
+                FriendGUI.createFriendsGUI(p);
             }
             e.setCancelled(true);
         }

@@ -61,3 +61,5 @@ commands:
         description: Do you get Mails? Read them here
     sendmail:
         description: Send a Player a mail
+    connServer:
+        description: connect to specific server
