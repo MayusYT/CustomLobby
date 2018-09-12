@@ -188,7 +188,7 @@ public class LobbyRestrictions implements Listener {
                 Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
             }
-            if (item.hasItemMeta()) {
+            if (item.getItemMeta().getDisplayName().contains("Freunde")) {
                 FriendGUI.createFriendsGUI(p);
             }
             e.setCancelled(true);
