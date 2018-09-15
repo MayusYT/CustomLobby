@@ -24,15 +24,15 @@ public class PardonHandler implements CommandExecutor {
                     if(BanmanagerCfg.onBanlist(Bukkit.getOfflinePlayer(args[0]).getName())) {
                         try {
                             BanmanagerCfg.pardonPlayer(Bukkit.getOfflinePlayer(args[0]).getName(), p);
-                            p.sendMessage(CustomLobby.prefix + "§aSpieler erfolgreich gebannt!");
+                            p.sendMessage(CustomLobby.prefix + "§aSpieler erfolgreich entbannt!");
                         } catch(IOException e) {
                             e.printStackTrace();
                         }
 
                     } if (BanmanagerCfg.onTempBanList(Bukkit.getOfflinePlayer(args[0]).getName())) {
                         try{
-                            BanmanagerCfg.pardonPlayer(Bukkit.getOfflinePlayer(args[0]).getName(), p);
-                            p.sendMessage(CustomLobby.prefix + "§aSpieler erfolgreich gebannt!");
+                            BanmanagerCfg.pardonTempPlayer(Bukkit.getOfflinePlayer(args[0]).getName(), p);
+                            p.sendMessage(CustomLobby.prefix + "§aSpieler erfolgreich entbannt!");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

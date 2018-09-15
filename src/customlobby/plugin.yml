@@ -14,6 +14,8 @@ commands:
         alias: [gmc, gm1]
     s:
         description: Gamemode 0.
+    sp:
+        description: Gamemode 3.
     nick:
         description: Give a nickname
         alias: [lobbynick, lnick, name]

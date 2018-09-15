@@ -26,6 +26,14 @@ public class Gamemode implements CommandExecutor {
                 sender.sendMessage(API.getNoPermString());
             }
         }
+        if(cmd.getName().equalsIgnoreCase("sp")) {
+            if(sender.hasPermission("CustomLobby.Gamemode.sp")) {
+                ((Player)sender).setGameMode(GameMode.SPECTATOR);
+                sender.sendMessage(API.getPrefix() + "§a Du bist nun im §6Spectatormodus§a!");
+            } else {
+                sender.sendMessage(API.getNoPermString());
+            }
+        }
         return true;
     }
 }
