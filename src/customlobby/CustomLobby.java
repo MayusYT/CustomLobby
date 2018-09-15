@@ -112,6 +112,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("setwarp").setExecutor(new SetNavigatorWarpsCMD());
         //Package: essential
         getCommand("build").setExecutor(new BuildMode());
+        getCommand("hub").setExecutor(new SpawnCMD());
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
         getCommand("tpall").setExecutor(new TpallCMD());

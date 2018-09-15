@@ -21,8 +21,9 @@ public class GetMoneyCMD implements CommandExecutor {
         if (conf.canConnect()) {
 
             Player p = (Player) sender;
-            if (CustomLobby.getInstance().getConfig().getString("players." + p.getName() + ".money") != null) {
-                p.sendMessage(CustomLobby.prefix + "Dein Kontostand: §a" + GetMoney.getMoneyByPlayer(p) + "$");
+            int money = GetMoney.getMoneyByPlayer(p);
+            if (money != 0) {
+                p.sendMessage(CustomLobby.prefix + "Dein Kontostand: §a" + money + "$");
             } else {
                 p.sendMessage(CustomLobby.prefix + "Glückwunsch! Du hast dein Startgeld bekommen: §a" + 1000 + "$");
                 //CustomLobby.getInstance().getConfig().set("players." + p.getName() + ".money", 1000);

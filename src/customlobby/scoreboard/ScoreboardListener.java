@@ -19,7 +19,7 @@ public class ScoreboardListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-    /*if(!Bukkit.getScheduler().isCurrentlyRunning(shed)) {
+    if(!Bukkit.getScheduler().isCurrentlyRunning(shed)) {
 
         shed = Bukkit.getScheduler().scheduleSyncRepeatingTask(CustomLobby.getInstance(), new Runnable() {
             @Override
@@ -29,7 +29,7 @@ public class ScoreboardListener implements Listener {
         }, 20, 20);
 
     }
-*/
+
 
     }
 
