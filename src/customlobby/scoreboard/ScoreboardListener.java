@@ -44,13 +44,13 @@ public class ScoreboardListener implements Listener {
         Score six = obj.getScore("§2Willkommen, " + p.getName());
         Score five = obj.getScore("§1Rang:");
         Score four = obj.getScore(ChatListener.getRankString(p));
-        Score three = obj.getScore("§1Money:");
+        /*Score three = obj.getScore("§1Money:");
         Score two;
         try {
             two = obj.getScore("§2" + GetMoney.getMoneyByPlayer(p));
         } catch (NullPointerException e) {
             two = obj.getScore("§eERROR");
-        }
+        }*/
         Score one = obj.getScore("§1Spieler online:");
         Score zero = obj.getScore("§2" + Bukkit.getOnlinePlayers().size() + "§7 / §2" + Bukkit.getMaxPlayers());
 
@@ -58,8 +58,8 @@ public class ScoreboardListener implements Listener {
         six.setScore(6);
         five.setScore(5);
         four.setScore(4);
-        three.setScore(3);
-        two.setScore(2);
+        //three.setScore(3);
+        //two.setScore(2);
         one.setScore(1);
         zero.setScore(0);
 
