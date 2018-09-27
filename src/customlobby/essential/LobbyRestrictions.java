@@ -8,12 +8,11 @@ import customlobby.friends.friendsGui.FriendGUI;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
+import customlobby.utils.API;
 import customlobby.utils.ItemAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -112,8 +111,29 @@ public class LobbyRestrictions implements Listener {
         CustomLobby.getInstance().reloadConfig();
         Player p = (Player) e.getWhoClicked();
         //Navigator
-        if(e.getInventory().getName().equalsIgnoreCase("§bNavigator")) {
-            if(e.getCurrentItem().getType() == Material.BRICK) {
+        if(e.getInventory().getName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', CustomLobby.getInstance().getConfig().getString("navigator.name"))) && e.getSlot() != -999) {
+
+            int slot = e.getSlot();
+            int row = -1;
+           if(slot < 9) {
+                row = 0;
+           } else if (slot > 8 && slot < 18) {
+               row = 1;
+           } else if (slot > 17 && slot < 27) {
+               row = 2;
+           } else if (slot > 26 && slot < 37) {
+               row = 3;
+           }
+           int col = slot - (row * 9);
+
+            //p.sendMessage(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+            if(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action") != null) {
+                if (BuildMode.buildmodeplayers.contains(p.getName())) {
+                    p.sendMessage(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+                }
+                CustomLobby.getInstance().getServer().dispatchCommand(p, CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+            }
+            /*if(e.getCurrentItem().getType() == Material.BRICK) {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
                 out.writeUTF("Connect");
                 out.writeUTF("CB1");
@@ -129,7 +149,7 @@ public class LobbyRestrictions implements Listener {
                 Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.pvp.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.YAW")));
                 p.teleport(loc);
                 p.playSound(loc, Sound.ENDERMAN_TELEPORT, 5, 10);
-            }
+            }*/
 
 
 

@@ -1,6 +1,7 @@
 package customlobby.utils;
 
 import customlobby.CustomLobby;
+import org.bukkit.Material;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 import java.util.List;
@@ -42,5 +43,9 @@ public class API {
         } else {
             return falseReturn;
         }
+    }
+
+    public static Material toMaterial(String material) {
+            return Material.getMaterial(material);
     }
 }
