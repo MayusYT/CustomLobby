@@ -77,11 +77,11 @@ public class LobbyRestrictions implements Listener {
         e.getPlayer().teleport(SpawnCMD.spawnLoc);
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
-
+        //TODO: Repair
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
-        if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
+        /*if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
             if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
                 e.getPlayer().kickPlayer("Du bist gebannt!");
             }
@@ -94,7 +94,7 @@ public class LobbyRestrictions implements Listener {
             }
 
         }
-        //To-Do: Bossbar
+*/        //To-Do: Bossbar
         //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
 
     }
