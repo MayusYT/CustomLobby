@@ -68,13 +68,7 @@ public class CustomLobby extends JavaPlugin {
 
     private void init() {
 
-        /*
-        try {
-            BanmanagerCfg.ConfigFile.delete();
-            BanmanagerCfg.save();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }*/
+
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         //############################
         //Listener & Events
@@ -107,11 +101,13 @@ public class CustomLobby extends JavaPlugin {
         //Package: gamemode
         getCommand("c").setExecutor(new Gamemode());
         getCommand("s").setExecutor(new Gamemode());
+        getCommand("sp").setExecutor(new Gamemode());
         //Package: navigator
         getCommand("gui").setExecutor(new NavigatorCommandListener());
         getCommand("setwarp").setExecutor(new SetNavigatorWarpsCMD());
         //Package: essential
         getCommand("build").setExecutor(new BuildMode());
+        getCommand("hub").setExecutor(new SpawnCMD());
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
         getCommand("tpall").setExecutor(new TpallCMD());
@@ -136,11 +132,7 @@ public class CustomLobby extends JavaPlugin {
     @Override
     public void onDisable() {
         System.out.println("[Lobby] Disabled!");
-        try {
-            BanmanagerCfg.save();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     public static CustomLobby getInstance() {

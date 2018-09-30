@@ -28,8 +28,7 @@ public class SetMoneyCMD implements CommandExecutor {
                     if (Bukkit.getPlayer(args[0]) != null) {
                         if (API.isInt(args[1])) {
                             SetMoney.setMoneyByPlayer(Bukkit.getPlayer(args[0]), Integer.parseInt(args[1]));
-                            p.sendMessage(CustomLobby.prefix + "§aDer Kontostand des Spielers " + args[0] + " wurde auf " + args[1]
-                                    + "gesetzt.");
+                            p.sendMessage(CustomLobby.prefix + "§aDer Kontostand des Spielers " + args[0] + " wurde auf " + args[1] + " gesetzt.");
                         } else {
                             p.sendMessage(CustomLobby.prefix + "§cBitte gib eine Zahl über 0 ein!");
                         }

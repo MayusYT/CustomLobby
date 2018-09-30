@@ -28,7 +28,7 @@ public class CratesNewCommand implements CommandExecutor {
                             CustomLobby.getInstance().saveConfig();
                             CustomLobby.getInstance().reloadConfig();
 
-                            sender.sendMessage(API.getPrefix() + "§6" + p.getName() + "§4" + count + " §acrates gegebem");
+                            sender.sendMessage(API.getPrefix() + "§6" + p.getName() + " §4" + count + " §acrates gegebem");
                         } else {
                             sender.sendMessage(CustomLobby.getPrefix() + " §6" + args[1] + "§c ist keine Valide possitive nummer unter 64");
                         }

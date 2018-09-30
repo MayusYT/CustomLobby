@@ -21,12 +21,12 @@ public class Tablist {
         try {
             Field a = tab.getClass().getDeclaredField("a");
             a.setAccessible(true);
-            //a.set(tab, IChatBaseComponent.ChatSerializer.a(toJsonString(header)));
+            a.set(tab, IChatBaseComponent.ChatSerializer.a(toJsonString(header)));
             a.setAccessible(false);
 
             Field b = tab.getClass().getDeclaredField("b");
             b.setAccessible(true);
-            //b.set(tab, IChatBaseComponent.ChatSerializer.a(toJsonString(footer)));
+            b.set(tab, IChatBaseComponent.ChatSerializer.a(toJsonString(footer)));
             b.setAccessible(false);
 
         } catch (Exception e) {

@@ -88,6 +88,7 @@ public class SQLConfig implements SQLAPI {
         return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
     }
 
+
     @Override
     public boolean removeWarn(String player) {
         String sql = "DELETE FROM warns WHERE `Name`='" + player + "'";
@@ -133,6 +134,14 @@ public class SQLConfig implements SQLAPI {
         return tempBanList;
 
     }
+
+    @Override
+    public boolean removeTempBan(String name) {
+        String sql = "DELETE FROM tempban WHERE `Name`='" + name + "'";
+        return MySQLAccess.setSQLContents(host, dbName, user, pw, sql);
+    }
+
+
 
     @Override
     public boolean addBan(String player, String reason) {

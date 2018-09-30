@@ -1,0 +1,174 @@
+player:
+  DEFAULT:
+    exist: false
+spawn:
+  DEFAULT:
+    exist: false
+  WORLD: Lobby
+  X: 0.0
+  Y: 0.0
+  Z: 0.0
+  PITCH: 0
+  YAW: 0
+SQL:
+  host: localhost
+  user: root
+  pw: ''
+  db: customlobby
+warps:
+  warp:
+    WORLD: World
+    X: 0
+    Y: 0
+    Z: 0
+    PITCH: 0
+    YAW: 0
+navigator:
+  name: Navigator
+  row:
+    '0':
+      '0':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '1':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '2':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '3':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '4':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '5':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '6':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '7':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '8':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+    '1':
+      '0':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '1':
+        name: '&aSky&7Block'
+        material: GRASS
+        action: connserver skyblock
+      '2':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '3':
+        name: '&4City&bBuild'
+        material: BRICK
+        action: connserver cb1
+      '4':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '5':
+        name: '&3Sky&7Wars'
+        material: CHEST
+        action: connserver skywars1
+      '6':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '7':
+        name: '&cPVP'
+        material: IRON_SWORD
+        action: connserver 1vs1
+      '8':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+    '2':
+      '0':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '1':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '2':
+        name: '&eNuke'
+        material: FIREBALL
+      '3':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '4':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '5':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '6':
+        name: '&4L&co&6b&eb&2y&as&bp&3i&1e&9l&de'
+        material: SKULL_ITEM
+      '7':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '8':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+    '3':
+      '0':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '1':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '2':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '3':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '4':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '5':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '6':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '7':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3
+      '8':
+        name: ' '
+        material: STAINED_GLASS_PANE
+        meta: 3

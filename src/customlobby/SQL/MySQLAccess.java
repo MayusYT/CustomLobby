@@ -28,7 +28,7 @@ public class MySQLAccess {
 			Statement statement = connection.createStatement();
 			
 			resultSet = statement.executeQuery(Quary);
-			
+			connection.close();
 			return resultSet;
 			
 		} catch (Exception e) {
@@ -50,7 +50,7 @@ public class MySQLAccess {
 			Statement statement = connection.createStatement();
 			
 			statement.executeUpdate(Quary);
-			
+			connection.close();
 			return true;
 			
 		} catch (Exception e) {
@@ -70,7 +70,7 @@ public class MySQLAccess {
 	String connectionCommand = "jdbc:mysql://"+host+"/"+database+"?user="+user+"&password="+passwd;
 	connection = DriverManager.getConnection(connectionCommand);
 	Statement statement = connection.createStatement();
-	resultSet = statement.executeQuery("select * from Connection");
+	resultSet = statement.executeQuery("select * from connection");
     //writeResultSet(resultSet);
 	connection.close();
 	return true;

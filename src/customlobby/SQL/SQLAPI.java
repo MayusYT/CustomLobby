@@ -27,6 +27,7 @@ public interface SQLAPI {
     int getWarncount(String player) throws SQLException;
 
     boolean addTempBan(String player, String reason, int oldmillis, int banneduntil);
+    boolean removeTempBan(String name);
     List<TempBan> getTempBan(String player) throws SQLException;
 
 

@@ -8,12 +8,11 @@ import customlobby.friends.friendsGui.FriendGUI;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
+import customlobby.utils.API;
 import customlobby.utils.ItemAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -77,11 +76,11 @@ public class LobbyRestrictions implements Listener {
         e.getPlayer().teleport(SpawnCMD.spawnLoc);
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
-
+        //TODO: Repair
         //Bann-Abfrage
 
         //Auf Perma-Ban Liste?
-        if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
+        /*if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
             if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
                 e.getPlayer().kickPlayer("Du bist gebannt!");
             }
@@ -94,7 +93,7 @@ public class LobbyRestrictions implements Listener {
             }
 
         }
-        //To-Do: Bossbar
+*/        //To-Do: Bossbar
         //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
 
     }
@@ -112,33 +111,45 @@ public class LobbyRestrictions implements Listener {
         CustomLobby.getInstance().reloadConfig();
         Player p = (Player) e.getWhoClicked();
         //Navigator
-        if(e.getInventory().getName().equalsIgnoreCase("§bNavigator")) {
-            if(e.getCurrentItem().getType() == Material.BRICK) {
+        if(e.getInventory().getName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', CustomLobby.getInstance().getConfig().getString("navigator.name"))) && e.getSlot() != -999) {
+
+            int slot = e.getSlot();
+            int row = -1;
+           if(slot < 9) {
+                row = 0;
+           } else if (slot > 8 && slot < 18) {
+               row = 1;
+           } else if (slot > 17 && slot < 27) {
+               row = 2;
+           } else if (slot > 26 && slot < 37) {
+               row = 3;
+           }
+           int col = slot - (row * 9);
+
+            //p.sendMessage(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+            if(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action") != null) {
+                if (BuildMode.buildmodeplayers.contains(p.getName())) {
+                    p.sendMessage(CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+                }
+                CustomLobby.getInstance().getServer().dispatchCommand(p, CustomLobby.getInstance().getConfig().getString("navigator.row." + row + "." + (slot - (row * 9)) + ".action"));
+            }
+            /*if(e.getCurrentItem().getType() == Material.BRICK) {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
                 out.writeUTF("Connect");
                 out.writeUTF("CB1");
 
                 p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
-            } else if(e.getCurrentItem().getType() == Material.GRASS) {
-                ByteArrayDataOutput out = ByteStreams.newDataOutput();
-                out.writeUTF("Connect");
-                out.writeUTF("skyblock");
-
-                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
-            } else if(e.getCurrentItem().getType() == Material.IRON_SWORD) {
-                ByteArrayDataOutput out = ByteStreams.newDataOutput();
-                out.writeUTF("Connect");
-                out.writeUTF("1vs1");
-
-                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
-            } else if(e.getCurrentItem().getType() == Material.IRON_BLOCK) {
-                ByteArrayDataOutput out = ByteStreams.newDataOutput();
-                out.writeUTF("Connect");
-                out.writeUTF("Builder");
-
-                p.sendPluginMessage(CustomLobby.getInstance(), "BungeeCord", out.toByteArray());
             }
-
+            if(e.getCurrentItem().getType() == Material.CHEST) {
+                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.skywars.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.skywars.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.skywars.YAW")));
+                p.teleport(loc);
+                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 10, 10);
+            }
+            if(e.getCurrentItem().getType() == Material.IRON_SWORD) {
+                Location loc = new Location(Bukkit.getWorld(CustomLobby.getInstance().getConfig().getString("warps.pvp.WORLD")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.X")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Y")), Double.parseDouble(CustomLobby.getInstance().getConfig().getString("warps.pvp.Z")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.PITCH")), Float.parseFloat(CustomLobby.getInstance().getConfig().getString("warps.pvp.YAW")));
+                p.teleport(loc);
+                p.playSound(loc, Sound.ENDERMAN_TELEPORT, 5, 10);
+            }*/
 
 
 
@@ -197,7 +208,7 @@ public class LobbyRestrictions implements Listener {
                 Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
             }
-            if (item.hasItemMeta()) {
+            if (item.getItemMeta().getDisplayName().contains("Freunde")) {
                 FriendGUI.createFriendsGUI(p);
             }
             e.setCancelled(true);
