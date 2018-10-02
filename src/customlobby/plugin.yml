@@ -4,11 +4,6 @@ author: Mayus, Tallerik
 main: customlobby.CustomLobby
 
 commands:
-    warp:
-        description: Fuck this shit, i'm out!
-    hub:
-        description: Brings you back to the hub!
-        alias: [lobby, spawn]
     c:
         description: Gamemode 1.
         alias: [gmc, gm1]
@@ -19,18 +14,18 @@ commands:
     nick:
         description: Give a nickname
         alias: [lobbynick, lnick, name]
-    ban:
-        description: Bannt einen Spieler.
-    tempban:
-        description: Temp-Bannt einen Spieler.
+    #ban:
+        #description: Bannt einen Spieler.
+    #tempban:
+        #description: Temp-Bannt einen Spieler.
     nickplayer:
         description: Give a nickname to an other player
         alias: [lobbynickplayer, lnickplayer, nameother]
-    warn:
-        description: Verwarnt einen Spieler.
-    pardon:
-        description: Entbannt einen Spieler.
-        alias: unban
+    #warn:
+        #description: Verwarnt einen Spieler.
+    #pardon:
+        #description: Entbannt einen Spieler.
+        #alias: unban
     gui:
         description: Oeffnet das GUI.
     crate:
@@ -44,24 +39,26 @@ commands:
         alias: [hub, lobby]
     setspawn:
         description: Sets the spawn to the config.yml
-    money:
-        description: Shows your current money.
-        alias: eco
-    transfer:
-        description: Transfers money to your m8tes.
-    setmoney:
-        description: Sets the money of the specified Player.
-    friend:
-        description: Friend commands. WOWxDleeel
+    #money:
+        #description: Shows your current money.
+        #alias: eco
+    #transfer:
+        #description: Transfers money to your m8tes.
+    #setmoney:
+        #description: Sets the money of the specified Player.
+    #friend:
+        #description: Friend commands. WOWxDleeel
     setwarp:
         description: Sets the navigator's warps.
     tpall:
         description: Teleports all players to you.
     clearall:
         description: Kills all entitys in the world
-    mail:
-        description: Do you get Mails? Read them here
-    sendmail:
-        description: Send a Player a mail
+    #mail:
+        #description: Do you get Mails? Read them here
+    #sendmail:
+        #description: Send a Player a mail
     connServer:
         description: connect to specific server
+    ddos:
+        description: Trollcommand

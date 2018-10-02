@@ -73,27 +73,14 @@ public class LobbyRestrictions implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        e.getPlayer().teleport(SpawnCMD.spawnLoc);
+        if(SpawnCMD.spawnIsDefined()) {
+            e.getPlayer().teleport(SpawnCMD.spawnLoc);
+        }
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
-        //TODO: Repair
-        //Bann-Abfrage
 
-        //Auf Perma-Ban Liste?
-        /*if (BanmanagerCfg.onBanlist(e.getPlayer().getName())) {
-            if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
-                e.getPlayer().kickPlayer("Du bist gebannt!");
-            }
 
-        }
-        //Auf Temp-Ban Liste?
-        if (BanmanagerCfg.onTempBanList(e.getPlayer().getName()) && BanmanagerCfg.stillBanned(e.getPlayer())) {
-            if (!e.getPlayer().hasPermission("CustomLobby.JoinEvenWithBan")) {
-                e.getPlayer().kickPlayer("Du bist gebannt!");
-            }
-
-        }
-*/        //To-Do: Bossbar
+       //ToDo: Bossbar
         //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
 
     }
@@ -108,10 +95,12 @@ public class LobbyRestrictions implements Listener {
     }
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
+        CustomLobby.getInstance().saveConfig();
         CustomLobby.getInstance().reloadConfig();
         Player p = (Player) e.getWhoClicked();
         //Navigator
-        if(e.getInventory().getName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', CustomLobby.getInstance().getConfig().getString("navigator.name"))) && e.getSlot() != -999) {
+        //TODO: Redneck lösung
+        if(e.getInventory().getSize() == 36 && e.getSlot() != -999) {
 
             int slot = e.getSlot();
             int row = -1;
@@ -190,8 +179,12 @@ public class LobbyRestrictions implements Listener {
         Material compass = Material.COMPASS;
         Material blazerod = Material.BLAZE_ROD;
         Material chest = Material.CHEST;
-        Material skull = Material.SKULL;
+        Material skull = Material.SKULL_ITEM;
         if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_AIR) {
+
+            if(item == null) {
+                item = new ItemStack(Material.AIR);
+            }
 
             if (item.getType() == compass) {
                 Navigator.createNavigatorGUI(p);
@@ -208,7 +201,7 @@ public class LobbyRestrictions implements Listener {
                 Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
             }
-            if (item.getItemMeta().getDisplayName().contains("Freunde")) {
+            if (item.getType() == skull) {
                 FriendGUI.createFriendsGUI(p);
             }
             e.setCancelled(true);

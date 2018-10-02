@@ -23,6 +23,7 @@ public class SpawnCreateCMD implements CommandExecutor {
             CustomLobby.getInstance().getConfig().set("spawn.Z", currentLoc.getZ());
             CustomLobby.getInstance().getConfig().set("spawn.PITCH", currentLoc.getPitch());
             CustomLobby.getInstance().getConfig().set("spawn.YAW", currentLoc.getYaw());
+            CustomLobby.getInstance().getConfig().set("spawn.exist", true);
             CustomLobby.getInstance().saveConfig();
             p.sendMessage( CustomLobby.prefix + "§aDer Spawn wurde erfolgreich gesetzt!");
         } else {

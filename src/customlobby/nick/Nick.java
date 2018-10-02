@@ -22,10 +22,14 @@ public class Nick implements CommandExecutor{
                         if (args[0].equalsIgnoreCase("off")) {
                             p.setDisplayName(p.getName());
                             p.setPlayerListName(p.getName());
+                            p.setCustomName(p.getName());
+                            p.setCustomNameVisible(false);
                             sender.sendMessage(API.getPrefix() + "§aNickname deaktiviert");
                         } else {
                             p.setDisplayName(args[0]);
                             p.setPlayerListName(args[0]);
+                            p.setCustomName(args[0]);
+                            p.setCustomNameVisible(true);
                             sender.sendMessage(API.getPrefix() + "§aNickname zu §6" + args[0] + "§a gesetzt");
                         }
                     } else {
@@ -46,10 +50,14 @@ public class Nick implements CommandExecutor{
                         if (args[1].equalsIgnoreCase("off")) {
                             p.setDisplayName(p.getName());
                             p.setPlayerListName(p.getName());
+                            p.setCustomName(p.getName());
+                            p.setCustomNameVisible(false);
                             sender.sendMessage(API.getPrefix() + "§aNickname von §6" + p.getName() + " §azurückgesetzt");
                         } else {
                             p.setDisplayName(args[1]);
                             p.setPlayerListName(args[1]);
+                            p.setCustomName(args[1]);
+                            p.setCustomNameVisible(true);
                             sender.sendMessage(API.getPrefix() + "§aNickname von §6" + p.getName() + " §azu §6" + args[1] + "§a geändert");
                         }
                     } else {

@@ -56,13 +56,13 @@ public class BootListener implements Listener {
                     p.setFallDistance(-999F);
                 }
             }
-            if(p.getGameMode() == GameMode.CREATIVE) {
+            if(p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR) {
                 p.setAllowFlight(true);
             } else {
                 p.setAllowFlight(false);
             }
             p.setWalkSpeed(0.2f);
-            p.setPlayerListName(p.getName());
+
         }
     }
 

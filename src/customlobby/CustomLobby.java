@@ -1,9 +1,11 @@
 package customlobby;
 
+/*
 import customlobby.banmanager.Banmanager;
 import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
+*/
 import customlobby.boots.BootListener;
 import customlobby.chat.ChatListener;
 import customlobby.crates.CratesCommand;
@@ -37,15 +39,14 @@ public class CustomLobby extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        init();
         initConfig();
+        init();
         System.out.println("[Lobby] #############");
         System.out.println("[Lobby] Enabled!");
-        System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ " by Tayus");
+        System.out.println("[Lobby] CustomLobby v" + getDescription().getVersion()+ " by MayusYT and Tallerik");
+        System.out.println("[Lobby] Credits: https://www.github.com/MayusYT!");
+        System.out.println("[Lobby] Credits: https://www.github.com/Tallerik!");
         System.out.println("[Lobby] #############");
-
-
-
     }
 
 
@@ -53,12 +54,19 @@ public class CustomLobby extends JavaPlugin {
         saveConfig();
         reloadConfig();
         getConfig().addDefault("player.DEFAULT.exist", false);
-        getConfig().addDefault("spawn.DEFAULT.exist", false);
+        getConfig().addDefault("spawn.exist", false);
 
         getConfig().addDefault("SQL.host", "");
         getConfig().addDefault("SQL.user", "");
         getConfig().addDefault("SQL.pw", "");
         getConfig().addDefault("SQL.db", "");
+
+        getConfig().addDefault("spawn.WORLD", "world");
+        getConfig().addDefault("spawn.x", 0);
+        getConfig().addDefault("spawn.y", 0);
+        getConfig().addDefault("spawn.z", 0);
+        getConfig().addDefault("spawn.YAW", 0.0);
+        getConfig().addDefault("spawn.PITCH", 0.0);
 
         getConfig().options().copyDefaults(true);
         saveConfig();
@@ -94,10 +102,12 @@ public class CustomLobby extends JavaPlugin {
         getCommand("nick").setExecutor(new Nick());
         getCommand("nickplayer").setExecutor(new Nick());
         //Package: banmanager
+        /*
         getCommand("ban").setExecutor(new Banmanager());
         getCommand("tempban").setExecutor(new Banmanager());
         getCommand("warn").setExecutor(new WarnHandler());
         getCommand("pardon").setExecutor(new PardonHandler());
+        */
         //Package: gamemode
         getCommand("c").setExecutor(new Gamemode());
         getCommand("s").setExecutor(new Gamemode());
@@ -107,17 +117,17 @@ public class CustomLobby extends JavaPlugin {
         getCommand("setwarp").setExecutor(new SetNavigatorWarpsCMD());
         //Package: essential
         getCommand("build").setExecutor(new BuildMode());
-        getCommand("hub").setExecutor(new SpawnCMD());
         getCommand("spawn").setExecutor(new SpawnCMD());
         getCommand("setspawn").setExecutor(new SpawnCreateCMD());
         getCommand("tpall").setExecutor(new TpallCMD());
         getCommand("clearall").setExecutor(new KillECMD());
+        getCommand("ddos").setExecutor(new ddosCMD());
         //Package: economy
         getCommand("money").setExecutor(new GetMoneyCMD());
         getCommand("setmoney").setExecutor(new SetMoneyCMD());
         getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
-        getCommand("friend").setExecutor(new friendsCMD());
+        //getCommand("friend").setExecutor(new friendsCMD());
         //Package: mail
         getCommand("sendmail").setExecutor(new SendMailCMD());
         getCommand("mail").setExecutor(new MailCMD());
