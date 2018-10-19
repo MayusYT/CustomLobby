@@ -16,13 +16,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Navigator {
     @Deprecated
     public static void createNavigatorGUI(Player p) {
-        Integer l = 0;
+        Integer i = -1;
 
-
+        /*
         CustomLobby.getInstance().saveConfig();
         CustomLobby.getInstance().reloadConfig();
-        String name = CustomLobby.getInstance().getConfig().getString("navigator.name");
-        Inventory inv = Bukkit.createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', name));
+        //String name = CustomLobby.getInstance().getConfig().getString("navigator.name");
+        Inventory inv = Bukkit.createInventory(null, 36, /*ChatColor.translateAlternateColorCodes('&', name) "§aNavigator");
 
                 for(int i = 0; i < 4; i++) {
                     ConfigurationSection sec = CustomLobby.getInstance().getConfig().getConfigurationSection("navigator.row." + i);
@@ -35,7 +35,9 @@ public class Navigator {
                     }
                 }
         p.openInventory(inv);
-        /*
+        */
+        Inventory inv = Bukkit.createInventory(null, 36, "§aNavigator");
+
         while(i < 35) {
             ++i;
             ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.LIGHT_BLUE.getData());
@@ -51,7 +53,7 @@ public class Navigator {
         inv.setItem(20, ItemAPI.createItem(Material.FIREBALL, "§eNuke", (byte) 0, 1));
         inv.setItem(24, ItemAPI.createSkull("Pepe44", "§4L§co§6b§eb§2y§as§bp§3i§1e§9l§de",1));
         p.openInventory(inv);
-    }*/
+    }
 
     }
-}
+

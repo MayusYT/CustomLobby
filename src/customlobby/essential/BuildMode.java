@@ -1,6 +1,7 @@
 package customlobby.essential;
 
 import customlobby.CustomLobby;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,9 +21,11 @@ public class BuildMode implements CommandExecutor {
             {
                 buildmodeplayers.add(p.getName());
                 p.sendMessage(CustomLobby.prefix + "§aDu bist nun im Baumodus!");
+                p.setGameMode(GameMode.CREATIVE);
             } else {
                 buildmodeplayers.remove(p.getName());
                 p.sendMessage(CustomLobby.prefix + "§aDu bist nun §cnicht §amehr im Baumodus!");
+                p.setGameMode(GameMode.SURVIVAL);
             }
 
         } else {

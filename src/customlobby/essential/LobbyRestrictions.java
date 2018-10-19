@@ -1,18 +1,17 @@
 package customlobby.essential;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
+
+import com.connorlinfoot.titleapi.TitleAPI;
 import customlobby.CustomLobby;
-import customlobby.banmanager.BanmanagerCfg;
+import customlobby.crates.CratesGui;
 import customlobby.friends.friendsGui.FriendGUI;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
-import customlobby.utils.API;
-import customlobby.utils.ItemAPI;
+
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.ConfigurationSection;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -78,7 +77,11 @@ public class LobbyRestrictions implements Listener {
         }
         e.getPlayer().getInventory().clear();
         StartItems.setStarterItems(e.getPlayer());
+        String title = CustomLobby.getInstance().getConfig().getString("settings.jointitle");
+        String subtitle = CustomLobby.getInstance().getConfig().getString("settings.joinsubtitle");
 
+        TitleAPI.sendTitle(e.getPlayer(), 1, 10, 1, title.replace("{player}", e.getPlayer().getName()));
+        TitleAPI.sendSubtitle(e.getPlayer(), 1, 10, 1, title.replace("{player}", e.getPlayer().getName()));
 
        //ToDo: Bossbar
         //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
@@ -201,9 +204,15 @@ public class LobbyRestrictions implements Listener {
                 Inventory inv = GadgetGUI.createGadgetInventory();
                 p.openInventory(inv);
             }
+
             if (item.getType() == skull) {
                 FriendGUI.createFriendsGUI(p);
             }
+
+            if(e.getClickedBlock().getType() == Material.ENDER_CHEST) {
+                e.getPlayer().openInventory(CratesGui.getInventory(CratesGui.MAIN_GUI, e.getPlayer()));
+            }
+
             e.setCancelled(true);
         }
         if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK) {

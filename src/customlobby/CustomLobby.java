@@ -6,17 +6,14 @@ import customlobby.banmanager.BanmanagerCfg;
 import customlobby.banmanager.PardonHandler;
 import customlobby.banmanager.WarnHandler;
 */
+import Listeners.DoubleJump;
+import Listeners.MobSpawnEvent;
 import customlobby.boots.BootListener;
 import customlobby.chat.ChatListener;
 import customlobby.crates.CratesCommand;
-import customlobby.crates.CratesEnderchestListener;
 import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
-import customlobby.economy.GetMoneyCMD;
-import customlobby.economy.MoneyTransfer;
-import customlobby.economy.SetMoneyCMD;
 import customlobby.essential.*;
-import customlobby.friends.friendsCMD;
 import customlobby.gamemode.Gamemode;
 import customlobby.mail.MailCMD;
 import customlobby.mail.MailListener;
@@ -25,13 +22,12 @@ import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
 import customlobby.scoreboard.ScoreboardListener;
-import customlobby.tablist.Tablist;
 import customlobby.troll.Troll;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomLobby extends JavaPlugin {
-    public final static String prefix = "§7[§3Lobby§7]§5 > §r";
+    public static String prefix = "PREFIX";
     public final static String noPermission = prefix + "§cDu hast nicht die nötige Berechtigung, um diesen Befehl auszuführen";
     public static CustomLobby instance;
 
@@ -68,10 +64,15 @@ public class CustomLobby extends JavaPlugin {
         getConfig().addDefault("spawn.YAW", 0.0);
         getConfig().addDefault("spawn.PITCH", 0.0);
 
+        getConfig().addDefault("settings.doublejump", 0.5);
+        getConfig().addDefault("settings.prefix", "§7[§3Lobby§7]§5 > §r");
+        getConfig().addDefault("settings.jointitle", "Willkommen, {player}");
+        getConfig().addDefault("settings.joinsubtitle", "auf dem Snapecraft Netzwerk!");
+
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
-
+        prefix = getConfig().getString("settings.prefix");
     }
 
     private void init() {
@@ -85,11 +86,11 @@ public class CustomLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CratesGuiEventHandler(), this);
         Bukkit.getPluginManager().registerEvents(new BootListener(), this);
         Bukkit.getPluginManager().registerEvents(new Troll(), this);
-        Bukkit.getPluginManager().registerEvents(new CratesEnderchestListener(), this);
         Bukkit.getPluginManager().registerEvents(new MailListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
-
+        Bukkit.getPluginManager().registerEvents(new DoubleJump(), this);
+        Bukkit.getPluginManager().registerEvents(new MobSpawnEvent(), this);
         //############################
         //Commands
         //Nicht vergessen, die Commands in der plugin.yml einzutragen!
@@ -123,19 +124,16 @@ public class CustomLobby extends JavaPlugin {
         getCommand("clearall").setExecutor(new KillECMD());
         getCommand("ddos").setExecutor(new ddosCMD());
         //Package: economy
-        getCommand("money").setExecutor(new GetMoneyCMD());
-        getCommand("setmoney").setExecutor(new SetMoneyCMD());
-        getCommand("transfer").setExecutor(new MoneyTransfer());
         //Package: profile
         //getCommand("friend").setExecutor(new friendsCMD());
         //Package: mail
-        getCommand("sendmail").setExecutor(new SendMailCMD());
-        getCommand("mail").setExecutor(new MailCMD());
+        //getCommand("sendmail").setExecutor(new SendMailCMD());
+        //getCommand("mail").setExecutor(new MailCMD());
 
 
         getCommand("connServer").setExecutor(new connServerCMD());
 
-        Tablist.repeatingTab();
+
     }
 
 

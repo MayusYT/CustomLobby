@@ -2,7 +2,6 @@ package customlobby.scoreboard;
 
 import customlobby.CustomLobby;
 import customlobby.chat.ChatListener;
-import customlobby.economy.GetMoney;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
