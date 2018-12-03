@@ -4,14 +4,11 @@ package customlobby.essential;
 import com.connorlinfoot.titleapi.TitleAPI;
 import customlobby.CustomLobby;
 import customlobby.crates.CratesGui;
-import customlobby.friends.friendsGui.FriendGUI;
 import customlobby.gadgetshop.GadgetGUI;
 import customlobby.hide.Hide;
 import customlobby.navigator.Navigator;
-
-import org.bukkit.*;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -203,7 +200,7 @@ public class LobbyRestrictions implements Listener {
             }
 
             if (item.getType() == skull) {
-                FriendGUI.createFriendsGUI(p);
+                //FriendGUI.createFriendsGUI(p);
             }
 
             if(e.getClickedBlock().getType() == Material.ENDER_CHEST) {
