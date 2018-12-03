@@ -83,9 +83,6 @@ public class LobbyRestrictions implements Listener {
         TitleAPI.sendTitle(e.getPlayer(), 1, 10, 1, title.replace("{player}", e.getPlayer().getName()));
         TitleAPI.sendSubtitle(e.getPlayer(), 1, 10, 1, title.replace("{player}", e.getPlayer().getName()));
 
-       //ToDo: Bossbar
-        //BossBar.newBar(e.getPlayer(), "§6Joine jetzt unserem Discord Server: §7snapecraft.ddns.net/discord");
-
     }
 
     @EventHandler

@@ -1,7 +1,5 @@
 package customlobby.mail;
 
-import customlobby.SQL.Mail;
-import customlobby.SQL.SQLConfig;
 import customlobby.utils.API;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +12,7 @@ import static customlobby.CustomLobby.getInstance;
 
 public class MailListener implements Listener {
 
-
+/*
     SQLConfig conf = new SQLConfig();
 
     @EventHandler
@@ -32,5 +30,5 @@ public class MailListener implements Listener {
         }
 
     }
-
+*/
 }

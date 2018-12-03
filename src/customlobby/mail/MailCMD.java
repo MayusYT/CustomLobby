@@ -1,7 +1,5 @@
 package customlobby.mail;
 
-import customlobby.SQL.Mail;
-import customlobby.SQL.SQLConfig;
 import customlobby.utils.API;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,7 +14,7 @@ public class MailCMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
+/*
         SQLConfig conf = new SQLConfig();
         conf.initialize(getInstance().getConfig().getString("SQL.host"), getInstance().getConfig().getString("SQL.user"), getInstance().getConfig().getString("SQL.pw"), getInstance().getConfig().getString("SQL.db"));
 
@@ -46,7 +44,7 @@ public class MailCMD implements CommandExecutor {
         } else {
             sender.sendMessage(API.getPrefix() + "§cUsage: §7/§6mail");
         }
-
+*/
         return true;
     }
 

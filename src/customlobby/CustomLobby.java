@@ -1,11 +1,5 @@
 package customlobby;
 
-/*
-import customlobby.banmanager.Banmanager;
-import customlobby.banmanager.BanmanagerCfg;
-import customlobby.banmanager.PardonHandler;
-import customlobby.banmanager.WarnHandler;
-*/
 import Listeners.DoubleJump;
 import Listeners.MobSpawnEvent;
 import customlobby.boots.BootListener;
@@ -15,9 +9,7 @@ import customlobby.crates.CratesGuiEventHandler;
 import customlobby.crates.CratesNewCommand;
 import customlobby.essential.*;
 import customlobby.gamemode.Gamemode;
-import customlobby.mail.MailCMD;
 import customlobby.mail.MailListener;
-import customlobby.mail.SendMailCMD;
 import customlobby.navigator.NavigatorCommandListener;
 import customlobby.navigator.SetNavigatorWarpsCMD;
 import customlobby.nick.Nick;
@@ -51,11 +43,6 @@ public class CustomLobby extends JavaPlugin {
         reloadConfig();
         getConfig().addDefault("player.DEFAULT.exist", false);
         getConfig().addDefault("spawn.exist", false);
-
-        getConfig().addDefault("SQL.host", "");
-        getConfig().addDefault("SQL.user", "");
-        getConfig().addDefault("SQL.pw", "");
-        getConfig().addDefault("SQL.db", "");
 
         getConfig().addDefault("spawn.WORLD", "world");
         getConfig().addDefault("spawn.x", 0);
@@ -102,13 +89,6 @@ public class CustomLobby extends JavaPlugin {
         //Package: Nick
         getCommand("nick").setExecutor(new Nick());
         getCommand("nickplayer").setExecutor(new Nick());
-        //Package: banmanager
-        /*
-        getCommand("ban").setExecutor(new Banmanager());
-        getCommand("tempban").setExecutor(new Banmanager());
-        getCommand("warn").setExecutor(new WarnHandler());
-        getCommand("pardon").setExecutor(new PardonHandler());
-        */
         //Package: gamemode
         getCommand("c").setExecutor(new Gamemode());
         getCommand("s").setExecutor(new Gamemode());
@@ -123,12 +103,7 @@ public class CustomLobby extends JavaPlugin {
         getCommand("tpall").setExecutor(new TpallCMD());
         getCommand("clearall").setExecutor(new KillECMD());
         getCommand("ddos").setExecutor(new ddosCMD());
-        //Package: economy
-        //Package: profile
-        //getCommand("friend").setExecutor(new friendsCMD());
-        //Package: mail
-        //getCommand("sendmail").setExecutor(new SendMailCMD());
-        //getCommand("mail").setExecutor(new MailCMD());
+
 
 
         getCommand("connServer").setExecutor(new connServerCMD());
@@ -146,7 +121,6 @@ public class CustomLobby extends JavaPlugin {
     public static CustomLobby getInstance() {
         return instance;
     }
-
 
     public static String getPrefix() {
         return prefix;

@@ -15,9 +15,6 @@ public class StartItems {
         ItemStack gadgets = ItemAPI.createItem(Material.CHEST, "§5Gadgets", (byte) 0, 1);
         ItemStack profile = ItemAPI.createSkull(p.getName(), "§9Profil, Freunde und Parties",  1);
 
-
-
-
         p.getInventory().setItem(0, navigator);
         p.getInventory().setItem(2, playerhider);
         p.getInventory().setItem(4, noGadget);
