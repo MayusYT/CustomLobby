@@ -1,4 +1,4 @@
-# Please note: This repository is outdated and for legacy use only. Please see the [CustomLobby-v2 repo](https://github.com/Snapecraft-Serverteam/CustomLobby).
+# Please note: This repository is outdated and for legacy use only. Please see the [CustomLobby-v2 repo](https://github.com/Snapecraft-Serverteam/CustomLobby-v2).
 
 
 
