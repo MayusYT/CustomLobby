@@ -1,4 +1,4 @@
-# Please note: This branch is outdated and for legacy use only. A much more lightweight version of the plugin is available at the customlobby-v2 branch.
+# Please note: This repository is outdated and for legacy use only. Please see the [CustomLobby-v2 repo](https://github.com/Snapecraft-Serverteam/CustomLobby).
 
 
 
